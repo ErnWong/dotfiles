@@ -14,6 +14,5 @@
   boot.loader.systemd-boot.enable = true;
 
   # will be overridden by the bootstrapIso instrumentation
-  # TODO: why is it not overriden to tmpfs as per iso-image.nix?
-  #fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
+  fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
 }
