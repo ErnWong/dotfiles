@@ -28,6 +28,7 @@ jobs:
     - run: nix -Lv develop -c echo OK
     - run: nix -Lv develop --command bud --help
     - run: nix -Lv develop --command bud build bootstrap bootstrapIso
+    - run: nix -Lv develop --command bud build NixOS bootstrapIso
     - uses: actions/upload-artifact@v2
       with:
         name: live-iso
