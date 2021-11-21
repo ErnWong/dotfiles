@@ -1,4 +1,4 @@
-name: "Check & Cachix"
+name: "Check & Cachix & Live ISO"
 on:
   push:
     branches:
@@ -27,3 +27,8 @@ jobs:
     - run: nix -Lv build ".#nixosConfigurations.NixOS.config.system.build.toplevel"
     - run: nix -Lv develop -c echo OK
     - run: nix -Lv develop --command bud --help
+    - run: nix -Lv develop --command bud build bootstrap bootstrapIso
+    - uses: actions/upload-artifact@v2
+      with:
+        name: live-iso
+        path: ./result/iso/*
