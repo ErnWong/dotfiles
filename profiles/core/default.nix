@@ -2,7 +2,10 @@
 let inherit (lib) fileContents;
 in
 {
-  imports = [ ../cachix ];
+  imports = [
+    ./vim
+    ../cachix
+  ];
 
   nix.systemFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
 

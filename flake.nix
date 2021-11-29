@@ -10,6 +10,8 @@
       nixos.url = "github:nixos/nixpkgs/release-21.05";
       latest.url = "github:nixos/nixpkgs/nixos-unstable";
 
+      musnix.url = "github:musnix/musnix";
+
       digga.url = "github:divnix/digga";
       digga.inputs.nixpkgs.follows = "nixos";
       digga.inputs.nixlib.follows = "nixos";
@@ -61,6 +63,7 @@
     , agenix
     , nvfetcher
     , deploy
+    , musnix
     , ...
     } @ inputs:
     digga.lib.mkFlake
@@ -110,6 +113,7 @@
               home.nixosModules.home-manager
               agenix.nixosModules.age
               bud.nixosModules.bud
+              musnix.nixosModules.musnix
             ];
           };
 
@@ -124,6 +128,7 @@
             };
             suites = with profiles; rec {
               base = [ core users.nixos users.root ];
+              graphical = base ++ [ graphical audio ];
             };
           };
         };
