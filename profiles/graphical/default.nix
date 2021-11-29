@@ -1,8 +1,8 @@
 {
-  hardware = {
-    video.hidpi.enable = true;
-    opengl.enable = true;
-  };
+  # hardware = {
+  #   video.hidpi.enable = true;
+  #   opengl.enable = true;
+  # };
 
   # services.xserver = {
   #   enable = true;
