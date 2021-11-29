@@ -1,8 +1,4 @@
 {
-  imports = [
-    # TODO
-  ];
-
   hardware = {
     video.hidpi.enable = true;
     opengl.enable = true;
