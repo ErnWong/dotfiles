@@ -128,7 +128,7 @@
             };
             suites = with profiles; rec {
               base = [ core users.nixos users.root ];
-              graphical = base; # ++ [ graphical audio ];
+              graphical = base ++ [ graphical /* audio */ ];
             };
           };
         };
