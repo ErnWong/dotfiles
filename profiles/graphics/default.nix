@@ -1,6 +1,6 @@
 {
   hardware = {
-    video.hidpi.enable = true;
+    video.hidpi.enable = false;
     opengl.enable = true;
   };
 
