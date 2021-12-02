@@ -127,8 +127,8 @@
               users = digga.lib.rakeLeaves ./users;
             };
             suites = with profiles; rec {
-              base = [ core users.nixos users.root ];
-              graphical = [ core users.nixos users.root graphics audio ];
+              base = [ core users.nixos users.root vm-guest ];
+              graphical = base ++ [ graphics audio ];
             };
           };
         };
