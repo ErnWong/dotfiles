@@ -103,7 +103,22 @@ in
   };
 
   fonts = {
-    fonts = with pkgs; [ powerline-fonts dejavu_fonts ];
+    # TODO: Move some of these fonts to home-manager.
+    # Will need to sort out the fontconfig.enable conflict.
+    fonts = with pkgs; [
+      powerline-fonts
+      dejavu_fonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      liberation_ttf
+      ubuntu_font_family
+      fira-code
+      fira-code-symbols
+      roboto
+      roboto-slab
+      roboto-mono
+    ];
 
     fontconfig.defaultFonts = {
 

@@ -10,15 +10,4 @@
     displayManager.sddm.enable = true;
     desktopManager.plasma5.enable = true;
   };
-
-  fonts = {
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      liberation_ttf
-      ubuntu_font_family
-    ];
-  };
 }
