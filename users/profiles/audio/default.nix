@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    ardour
+    (lib.mkIf stdenv.hostPlatform.isLinux ardour)
     musescore
     audacity
   ];
