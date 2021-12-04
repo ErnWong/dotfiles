@@ -123,7 +123,7 @@ in
     ];
 
     fontconfig = {
-      enable = true;
+      enable = lib.mkForce true;
       defaultFonts = {
         monospace = [ "DejaVu Sans Mono for Powerline" ];
         sansSerif = [ "DejaVu Sans" ];
