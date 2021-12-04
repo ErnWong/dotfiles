@@ -103,6 +103,8 @@ in
   };
 
   fonts = {
+    fontDir.enable = true;
+
     # TODO: Move some of these fonts to home-manager.
     # Will need to sort out the fontconfig.enable conflict.
     fonts = with pkgs; [
@@ -120,12 +122,12 @@ in
       roboto-mono
     ];
 
-    fontconfig.defaultFonts = {
-
-      monospace = [ "DejaVu Sans Mono for Powerline" ];
-
-      sansSerif = [ "DejaVu Sans" ];
-
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = [ "DejaVu Sans Mono for Powerline" ];
+        sansSerif = [ "DejaVu Sans" ];
+      };
     };
   };
 
