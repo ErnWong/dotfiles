@@ -5,7 +5,7 @@
 
   boot.loader.grub.enable = pkgs.lib.mkDefault true;
   boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/disk/by-label/nixos";
+  boot.loader.grub.device = "/dev/sdb";
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
