@@ -27,5 +27,7 @@
   networking.interfaces.wlp3s0.useDHCP = true;
 
   fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
-  swapDevices."/" = { device = "/dev/disk/by-label/swap"; };
+  swapDevices = [
+    { device = "/dev/disk/by-label/swap"; }
+  ];
 }
