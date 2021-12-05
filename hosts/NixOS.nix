@@ -1,9 +1,9 @@
-{ suites, ... }:
+{ suites, pkgs, ... }:
 {
   ### root password is empty by default ###
   imports = suites.graphical;
 
-  boot.loader.grub.enable = true;
+  boot.loader.grub.enable = pkgs.lib.mkDefault true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/disk/by-label/nixos";
   boot.initrd.availableKernelModules = [
