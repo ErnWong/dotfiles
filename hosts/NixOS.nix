@@ -22,9 +22,6 @@
   boot.extraModulePackages = [ ];
 
   networking.networkmanager.enable = true;
-  networking.wireless.enable = true;
-  networking.interfaces.enp4s0f1.useDHCP = true;
-  networking.interfaces.wlp3s0.useDHCP = true;
 
   fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
   swapDevices = [
