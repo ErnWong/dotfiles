@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    wezterm
-  ];
+  home = {
+    packages = with pkgs; [
+      wezterm
+    ];
+    enableDebugInfo = true;
+  };
 }
