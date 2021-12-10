@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    discord
+    (lib.mkIf stdenv.hostPlatform.system == "x86_64-linux" discord)
   ];
   programs = {
     chromium.enable = true;
