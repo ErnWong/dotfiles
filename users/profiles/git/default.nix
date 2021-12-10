@@ -8,6 +8,7 @@
 
     extraConfig = {
       pull.rebase = false;
+      credential."https://github.com".helper = "!gh auth git-credential";
     };
 
     aliases = {
