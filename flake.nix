@@ -76,7 +76,6 @@
           nixos = {
             imports = [ (digga.lib.importOverlays ./overlays) ];
             overlays = [
-              digga.overlays.patchedNix
               nur.overlay
               agenix.overlay
               nvfetcher.overlay
