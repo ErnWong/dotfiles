@@ -2,7 +2,7 @@
 {
   home = {
     packages = with pkgs; [
-      wezterm
+      (lib.mkIf stdenv.hostPlatform.isLinux wezterm)
       gdb
     ];
     enableDebugInfo = true;
