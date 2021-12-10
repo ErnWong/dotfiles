@@ -4,6 +4,6 @@
     (lib.mkIf (stdenv.hostPlatform.system == "x86_64-linux") discord)
   ];
   programs = {
-    chromium.enable = stdenv.hostPlatform.isLinux;
+    chromium.enable = pkgs.stdenv.hostPlatform.isLinux;
   };
 }
