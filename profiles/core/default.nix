@@ -100,6 +100,8 @@ in
         jtl = "journalctl";
 
       };
+
+    enableDebugInfo = true;
   };
 
   fonts = {
