@@ -15,6 +15,7 @@
         vscodevim.vim
         matklad.rust-analyzer
         ms-vscode.cpptools
+        arrterian.nix-env-selector
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
         name = "prusti-assistant";
         publisher = "viper-admin";
