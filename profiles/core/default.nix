@@ -19,6 +19,7 @@ in
       dnsutils
       dosfstools
       fd
+      file
       git
       bottom
       gptfdisk
