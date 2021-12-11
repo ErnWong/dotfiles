@@ -9,7 +9,7 @@
   };
   programs = {
     vscode = {
-      enable = stdenv.hostPlatform.isLinux;
+      enable = pkgs.stdenv.hostPlatform.isLinux;
       package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
