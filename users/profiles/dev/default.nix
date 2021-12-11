@@ -8,7 +8,7 @@
     enableDebugInfo = true;
   };
   programs = {
-    java.enable = true; # Needed for prusti vscode extension
+    java.enable = pkgs.stdenv.hostPlatform.system == "x86_64-linux"; # Needed for prusti vscode extension
     vscode = {
       enable = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
       package = pkgs.vscodium;
