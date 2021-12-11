@@ -7,4 +7,20 @@
     ];
     enableDebugInfo = true;
   };
+  programs = {
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        vscodevim.vim
+        matklad.rust-analyzer
+        ms-vscode.cpptools
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
+        name = "prusti-assistant";
+        publisher = "viper-admin";
+        version = "0.9.0";
+        sha256 = "sha256-6Vcz4EPirN+d4VjzMky7BSHvqMdkf6GqwPiHuPNyaIU=";
+      }];
+    };
+  };
 }
