@@ -81,6 +81,9 @@
         #coc-css
         #coc-prettier
 
+        # See bug: github.com/nix-community/home-manager/issues/2386
+        coc-nvim #??? Shouldn't be necessary since coc.enable=true
+
         # Handy
         vim-surround
         vim-commentary
