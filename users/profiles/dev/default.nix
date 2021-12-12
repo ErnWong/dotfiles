@@ -4,7 +4,6 @@
     packages = with pkgs; [
       (lib.mkIf stdenv.hostPlatform.isLinux wezterm)
       gdb
-      rnix-lsp
     ];
     enableDebugInfo = true;
   };
@@ -27,27 +26,27 @@
     };
     neovim = {
       enable = true;
-      coc = {
-        enable = true;
-        settings = {
-          languageServer = {
-            nix = {
-              command = "rnix-lsp";
-              filetypes = [ "nix" ];
-            };
-          };
-        };
-      };
+      extraConfig = ''
+        colorscheme gruvbox
+        lua << EOF
+          require('rust-tools').setup({})
+          require('lspconfig').rnix.setup({})
+        EOF
+      '';
+      extraPackages = with pkgs; [
+        rnix-lsp
+        rust-analyzer
+      ];
       plugins = with pkgs.vimPlugins; [
-        # See bug: github.com/nix-community/home-manager/issues/2386
-        coc-nvim #??? Shouldn't be necessary since coc.enable=true
-
         vim-sensible
         neovim-sensible
+        nvim-dap
 
         # Intelligence
         syntastic
         editorconfig-vim
+        nvim-lspconfig
+        nvim-dap
 
         # Languages
         vim-liquid
@@ -58,7 +57,8 @@
         markdown-preview-nvim
         #yajs-vim
         #vim-sass-lint
-        rust-vim
+        #rust-vim
+        rust-tools-nvim
         yats-vim
         ats-vim
         vim-nix
@@ -70,7 +70,7 @@
         #coc-yaml
         #coc-toml
         #coc-gitignore
-        coc-rust-analyzer
+        #coc-rust-analyzer
         #coc-java
         #coc-tsserver
         #coc-eslint
