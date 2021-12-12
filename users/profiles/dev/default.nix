@@ -26,13 +26,7 @@
     };
     neovim = {
       enable = true;
-      extraConfig = ''
-        colorscheme gruvbox
-        lua << EOF
-          require('rust-tools').setup({})
-          require('lspconfig').rnix.setup({})
-        EOF
-      '';
+      extraConfig = builtins.readFile ./init.vim;
       extraPackages = with pkgs; [
         rnix-lsp
         rust-analyzer
