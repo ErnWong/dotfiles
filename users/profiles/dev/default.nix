@@ -106,7 +106,7 @@
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-      withNodeJS = true;
+      withNodeJs = true;
       withPython3 = true;
       withRuby = true;
     };
