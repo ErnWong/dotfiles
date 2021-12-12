@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.0.2](https://github.com/ErnWong/dotfiles/tree/v0.0.2) (2021-12-11)
+
+**Fixed bugs:**
+
+- Fix credentials story for gh [\#16](https://github.com/ErnWong/dotfiles/issues/16)
+
 ## [v0.0.1](https://github.com/ErnWong/dotfiles/tree/v0.0.1) (2021-12-05)
 
 **Implemented enhancements:**
