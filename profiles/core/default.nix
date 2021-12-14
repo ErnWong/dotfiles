@@ -174,4 +174,5 @@ in
 
   services.earlyoom.enable = true;
 
+  time.timeZone = "Pacific/Auckland";
 }
