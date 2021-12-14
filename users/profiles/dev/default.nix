@@ -107,5 +107,16 @@
       withPython3 = true;
       withRuby = true;
     };
+
+    readline = {
+      enable = true;
+      bindings = {
+        "\\t" = "menu-complete";
+        "\\e[Z" = "menu-complete-backward";
+        "\\e[A" = "history-search-backward";
+        "\\e[B" = "history-search-forward";
+      };
+      extraConfig = builtins.readFile ./inputrc;
+    };
   };
 }
