@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  xdg.systemDirs.config = [ "/home/nixos/repos/test-kde-config" ]; # Hardcoded directory for testing purposes. TODO
   home = {
     packages = with pkgs; [
       (lib.mkIf stdenv.hostPlatform.isLinux wezterm)
