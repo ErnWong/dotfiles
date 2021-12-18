@@ -2,7 +2,6 @@
 {
   home = {
     packages = with pkgs; [
-      (lib.mkIf stdenv.hostPlatform.isLinux wezterm)
       gdb
     ];
     enableDebugInfo = true;
@@ -117,6 +116,11 @@
         "\\e[B" = "history-search-forward";
       };
       extraConfig = builtins.readFile ./inputrc;
+    };
+
+    wezterm = {
+      enable = pkgs.stdenv.hostPlatform.isLinux;
+      settings.font_size = 10.0;
     };
   };
 }
