@@ -123,6 +123,7 @@ in
       roboto
       roboto-slab
       roboto-mono
+      nerdfonts
     ];
 
     fontconfig = {
