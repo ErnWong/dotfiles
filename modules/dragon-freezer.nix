@@ -117,7 +117,7 @@ in
 
   config = mkIf cfg.enable {
     environment.extraInit = ''
-      export XDG_CONFIG_DIRS="${configDir}:$XDG_CONFIG_DIRS"
+      export XDG_CONFIG_DIRS="${configDir}/etc/xdg:$XDG_CONFIG_DIRS"
     '';
   };
 }
