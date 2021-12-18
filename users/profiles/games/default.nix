@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = [
-    pkgs.runelite
+    (lib.mkIf (stdenv.hostPlatform.system == "x86_64-linux") pkgs.runelite)
   ];
 }
