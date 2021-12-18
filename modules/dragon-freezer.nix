@@ -1,9 +1,15 @@
+# TODO: See github.com/KDE/plasma-desktop/blob/master/kcms/mouse/backends/x11/evdev_settings.cpp
+
 { config, pkgs, lib, ... }:
 with lib;
 let
   cfg = config.dragon-freezer;
   calculatedSettings = {
     kcminputrc.Mouse.cursorTheme = cfg.settings.mouse.cursorTheme;
+    #kcminputrc.Mouse.Acceleration = cfg.settings.mouse.acceleration;
+    #kcminputrc.Mouse.Threshold = cfg.settings.mouse.threshold;
+    #kcminputrc.Mouse.MouseButtonMapping = cfg.settings.mouse.buttonMapping;
+    #kcminputrc.Mouse.ReverseScrollPolarity = cfg.settings.mouse.reverseScrollPolarity;
   };
   mergedSettings = recursiveUpdate calculatedSettings cfg.extraSettings;
   groupPathToString = groupPath:
@@ -124,6 +130,7 @@ in
 
 # kdeglobals.KDE.widgetStyle = breeze
 # kdeglobals.KDE.widgetStyle = kvantum
+# kdeglobals.KDE.LookAndFeelPackage = org.kde.plasma.phone
 # kdeglobals.General.ColorScheme = Numix
 # kdeglobals.Icons.Theme = Numix-Circle
 # kdeglobals.Icons.Theme = Ant-Dark
@@ -132,3 +139,8 @@ in
 # kwinrc."org.kde.kdecoration2".library = org.kde.kwin.aurorae
 # kwinrc."org.kde.kdecoration2".theme = __aurorae__svg__Nordic
 # kwinrc."org.kde.kdecoration2".theme = __aurorae__svg__Arc-Dark
+# kwinrc."org.kde.kdecoration2".NoPlugin = true
+# kwinrc.Windows.Placement = Maximizing
+# kwinrc.Desktops.Number = 1
+# kwinrc.Desktops.Rows = 1
+# dolphinrc.MainWindow.MenuBar = Disabled
