@@ -32,17 +32,17 @@ symbol = " "
 style = "bold dimmed white"
 
 [git_status]
-format = '([「$all_status$ahead_behind」]($style) )'
-conflicted = "⚠️"
-ahead = "⟫${count} "
-behind = "⟪${count}"
-diverged = "🔀 "
-untracked = "📁 "
-stashed = "↪ "
-modified = "𝚫 "
-staged = "✔ "
-renamed = "⇆ "
-deleted = "✘ "
+format = '([\[$all_status$ahead_behind\]]($style) )'
+conflicted = ""
+ahead = "⇡${count} "
+behind = "⇣${count}"
+diverged = "נּ "
+untracked = " "
+stashed = " "
+modified = "פֿ "
+staged = " "
+renamed = "凜"
+deleted = " "
 style = "bold bright-white"
 
 [golang]
