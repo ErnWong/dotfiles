@@ -56,6 +56,7 @@ in
 
         # git
         g = "git";
+        gg = "git status -sb";
 
         # grep
         grep = "rg";
