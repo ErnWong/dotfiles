@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  #environment.extraInit = ''
-  #export XDG_CONFIG_DIRS="/home/nixos/repos/test-kde-config:$XDG_CONFIG_DIRS"
-  #''; # Hardcoded directory for testing purposes. TODO
   dragon-freezer = {
     enable = true;
     immutable = true;
