@@ -140,7 +140,7 @@
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {
-              base = [ audio direnv git dev comms ];
+              base = [ audio direnv git dev comms games ];
             };
           };
           users = {
