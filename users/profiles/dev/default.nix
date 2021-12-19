@@ -5,8 +5,16 @@
       gdb
     ];
     enableDebugInfo = true;
+    sessionVariables = {
+      # Replace bold/underline with colors when using man
+      MANPAGER = "less --RAW-CONTROL-CHARS --use-color --color d+r --color u+b";
+    };
   };
   programs = {
+    less = {
+      enable = true;
+      keys = builtins.readFile ./lesskey;
+    };
     java.enable = pkgs.stdenv.hostPlatform.system == "x86_64-linux"; # Needed for prusti vscode extension
     vscode = {
       enable = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
