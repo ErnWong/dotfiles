@@ -1,16 +1,31 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  sessionVariables = {
+    # Replace bold/underline with colors when using man
+    MANPAGER = "less --RAW-CONTROL-CHARS --use-color --color d+r --color u+b";
+    STARSHIP_CONFIG = pkgs.writeText "starship.toml" (lib.fileContents ./starship.toml);
+  };
+in
 {
   home = {
+    inherit sessionVariables;
     packages = with pkgs; [
       gdb
+      starship
     ];
     enableDebugInfo = true;
-    sessionVariables = {
-      # Replace bold/underline with colors when using man
-      MANPAGER = "less --RAW-CONTROL-CHARS --use-color --color d+r --color u+b";
-    };
   };
   programs = {
+    bash = {
+      inherit sessionVariables;
+      enable = true;
+      profileExtra = ''
+        eval "$(${pkgs.starship}/bin/starship init bash)"
+      '';
+      initExtra = ''
+        eval "$(${pkgs.direnv}/bin/direnv hook bash)"
+      '';
+    };
     less = {
       enable = true;
       keys = builtins.readFile ./lesskey;
@@ -128,6 +143,10 @@
 
     wezterm = {
       enable = pkgs.stdenv.hostPlatform.isLinux;
+      #settings.font_size = 9.4;
+      #extraReturnSettings = ''
+      #  font = wezterm.font("JetBrainsMono Nerd Font")
+      #'';
       settings = {
         color_scheme = "Gruvbox Dark";
         font_size = 10.0;
@@ -138,6 +157,12 @@
           "JetBrainsMono Nerd Font"
         })
       '';
+      # extraReturnSettings = ''
+      #   font = wezterm.font_with_fallback({
+      #     "Fira Code",
+      #     "FiraCode Nerd Font"
+      #   })
+      # '';
     };
   };
 }
