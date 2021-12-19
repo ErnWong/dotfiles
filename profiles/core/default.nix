@@ -115,7 +115,11 @@
       roboto
       roboto-slab
       roboto-mono
-      nerdfonts
+      (nerdfonts.override {
+        fonts = [
+          "JetBrainsMono"
+        ];
+      })
     ];
 
     fontconfig = {
