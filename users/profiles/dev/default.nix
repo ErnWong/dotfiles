@@ -120,7 +120,10 @@
 
     wezterm = {
       enable = pkgs.stdenv.hostPlatform.isLinux;
-      settings.font_size = 10.0;
+      settings = {
+        color_scheme = "Gruvbox Dark";
+        font_size = 10.0;
+      };
       extraReturnSettings = ''
         font = wezterm.font_with_fallback({
           "JetBrains Mono",
