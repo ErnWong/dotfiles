@@ -148,6 +148,8 @@ in
       #  font = wezterm.font("JetBrainsMono Nerd Font")
       #'';
       settings = {
+        check_for_updates = false;
+        warn_about_missing_glyphs = false;
         color_scheme = "Gruvbox Dark";
         font_size = 10.0;
       };
