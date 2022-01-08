@@ -119,9 +119,15 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ dpkg ];
 
+  # Note: chrome-sandbox has setuid which causes the following error if we just did dpkg-deb -x like how hyper does it.
+  #   tar: ./opt/extraterm/chrome-sandbox: Cannot change mode to rwsrwxr-x: Operation not permitted
+  #   tar: Exiting with failure status due to previous errors
+  #   dpkg-deb: error: tar subprocess returned error exit status 2
+  # See github.com/NixOS/nixpkgs/issues/89482
+  # See github.com/NixOS/nixpkgs/issues/88971
   unpackPhase = ''
     mkdir pkg
-    dpkg-deb -x $src pkg
+    dpkg-deb --fsys-tarfile $src | tar --directory pkg -x --no-same-permissions --no-same-owner
     sourceRoot=pkg
   '';
 
