@@ -12,6 +12,7 @@ in
     packages = with pkgs; [
       gdb
       starship
+      extraterm
     ];
     enableDebugInfo = true;
   };
