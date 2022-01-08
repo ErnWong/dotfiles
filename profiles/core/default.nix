@@ -10,6 +10,7 @@
   environment = {
 
     systemPackages = with pkgs; [
+      ark
       binutils
       coreutils
       curl
@@ -30,9 +31,11 @@
       ripgrep
       skim
       tealdeer
+      unzip
       usbutils
       utillinux
       whois
+      zip
     ];
 
     shellAliases =
