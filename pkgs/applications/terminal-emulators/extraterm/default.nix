@@ -10,7 +10,7 @@ mkYarnPackage rec {
   };
 
   packageJSON = ./package.json;
-  # yarnLock = ./yarn.lock;
+  yarnLock = ./yarn.lock;
 
   # offlineCache = fetchYarnDeps {
   #   yarnLock = src + "/yarn.lock";
