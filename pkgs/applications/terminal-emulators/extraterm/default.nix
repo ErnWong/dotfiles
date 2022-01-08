@@ -1,5 +1,5 @@
-{ mkYarnPackage, fetchFromGitHub, fetchYarnDeps, ... }:
-mkYarnPackage rec {
+{ pkgs, fetchFromGitHub, fetchYarnDeps, ... }:
+pkgs.yarn2nix-fixed.mkYarnPackage rec {
   pname = "extraterm";
   version = "0.59.0";
   src = fetchFromGitHub {
