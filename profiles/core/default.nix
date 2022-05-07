@@ -36,6 +36,8 @@
       utillinux
       whois
       zip
+      ddrescue
+      ddrescueview
     ];
 
     shellAliases =
