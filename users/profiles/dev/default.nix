@@ -13,6 +13,7 @@ in
       gdb
       starship
       extraterm
+      rlwrap
     ];
     enableDebugInfo = true;
   };
