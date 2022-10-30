@@ -79,6 +79,7 @@ in
         yats-vim
         ats-vim
         vim-nix
+        idris2-vim
 
         # Coc
         #coc-marketplace
