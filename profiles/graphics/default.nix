@@ -3,7 +3,8 @@
   dragon-freezer = {
     enable = true;
     immutable = true;
-    settings.mouse.cursorTheme = "KDE_Classic";
+    settings.mouse.cursorTheme = "breeze_cursors";
+    settings.mouse.cursorSize = 48;
   };
 
   hardware = {

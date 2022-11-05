@@ -6,10 +6,11 @@ let
   cfg = config.dragon-freezer;
   calculatedSettings = {
     kcminputrc.Mouse.cursorTheme = cfg.settings.mouse.cursorTheme;
-    #kcminputrc.Mouse.Acceleration = cfg.settings.mouse.acceleration;
-    #kcminputrc.Mouse.Threshold = cfg.settings.mouse.threshold;
-    #kcminputrc.Mouse.MouseButtonMapping = cfg.settings.mouse.buttonMapping;
-    #kcminputrc.Mouse.ReverseScrollPolarity = cfg.settings.mouse.reverseScrollPolarity;
+    kcminputrc.Mouse.cursorSize = toString cfg.settings.mouse.cursorSize;
+    # kcminputrc.Mouse.Acceleration = cfg.settings.mouse.acceleration;
+    # kcminputrc.Mouse.Threshold = cfg.settings.mouse.threshold;
+    # kcminputrc.Mouse.MouseButtonMapping = cfg.settings.mouse.buttonMapping;
+    # kcminputrc.Mouse.ReverseScrollPolarity = cfg.settings.mouse.reverseScrollPolarity;
   };
   mergedSettings = recursiveUpdate calculatedSettings cfg.extraSettings;
   groupPathToString = groupPath:
@@ -115,13 +116,30 @@ in
           dr-xr-xr-x  2 root root 4096 Jan  1  1970 Oxygen_Yellow
           dr-xr-xr-x  2 root root 4096 Jan  1  1970 Oxygen_Zion
                     See wiki.archlinux.org/title/Cursor_themes
+                    See settings.mouse.cursorSize for changing the size.
                     See man Xcursor.3 (man.archlinux.org/man/Xcursor.3) for folder format.
+        '';
+      };
+      cursorSize = mkOption {
+        type = types.nullOr types.int;
+        default = null;
+        description = ''
+          kcminputrc Mouse cursorSize
+          Sets XCURSOR_SIZE
+          Note that not all sizes might be supported by the selected cursor theme. For example, Breeze supports 24, 36, 48, while Oxygen Blue supports 24, 48, 72.
+          System Settings -> Appearance -> Cursors
+          See settings.mouse.cursorTheme for changing the images used for the cursors.
+          See https://wiki.archlinux.org/title/Cursor_themes
         '';
       };
     };
   };
 
   config = mkIf cfg.enable {
+    # Note: when used as a nixos module, changes don't take affect until
+    # logging out and logging back in. However, no restart is necessary.
+    # Also, updated cursor don't affect programs that are already running - only
+    # affects subsequently started programs.
     environment.extraInit = ''
       export XDG_CONFIG_DIRS="${configDir}/etc/xdg:$XDG_CONFIG_DIRS"
     '';
