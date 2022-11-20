@@ -167,5 +167,8 @@
 
   services.earlyoom.enable = true;
 
+  virtualisation.docker.enable = true;
+  security.unprivilegedUsernsClone = true; # todo
+
   time.timeZone = "Pacific/Auckland";
 }
