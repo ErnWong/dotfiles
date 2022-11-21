@@ -144,7 +144,7 @@ in
       extraConfig = builtins.readFile ./inputrc;
     };
 
-    wezterm = {
+    wezterm-personal = {
       enable = pkgs.stdenv.hostPlatform.isLinux;
       #settings.font_size = 9.4;
       #extraReturnSettings = ''

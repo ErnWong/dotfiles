@@ -2,7 +2,7 @@
   musnix = {
     enable = true;
     kernel = {
-      optimize = true;
+      # optimize = true; TODO
       realtime = true;
     };
     das_watchdog.enable = true;
