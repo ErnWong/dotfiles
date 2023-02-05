@@ -17,5 +17,8 @@
     displayManager.sddm.enable = true;
     desktopManager.plasma5.enable = true;
     libinput.enable = true;
+    layout = "us,apl";
+    xkbVariant = ",dyalog";
+    xkbOptions = "grp:switch";
   };
 }
