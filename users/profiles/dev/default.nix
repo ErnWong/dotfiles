@@ -28,10 +28,10 @@ in
         eval "$(${pkgs.direnv}/bin/direnv hook bash)"
       '';
     };
-    less = {
-      enable = true;
-      keys = builtins.readFile ./lesskey;
-    };
+    # less = {
+    #   enable = true;
+    #   keys = builtins.readFile ./lesskey;
+    # };
     java.enable = pkgs.stdenv.hostPlatform.system == "x86_64-linux"; # Needed for prusti vscode extension
     vscode = {
       enable = pkgs.stdenv.hostPlatform.system == "x86_64-linux";
@@ -46,7 +46,13 @@ in
         publisher = "viper-admin";
         version = "0.9.0";
         sha256 = "sha256-6Vcz4EPirN+d4VjzMky7BSHvqMdkf6GqwPiHuPNyaIU=";
-      }];
+      }
+        {
+          name = "idris2-lsp";
+          publisher = "bamboo";
+          version = "0.7.0";
+          sha256 = "sha256-8eLvHKUPBoge50wzOfp5aK/XVJElVzKtil8Yj+PwNUU=";
+        }];
     };
     neovim = {
       enable = true;
