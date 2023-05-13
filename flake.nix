@@ -22,8 +22,8 @@
       bud.inputs.nixpkgs.follows = "nixos";
       bud.inputs.devshell.follows = "digga/devshell";
 
-      #home.url = "github:nix-community/home-manager/release-21.05";
-      home.url = "github:nix-community/home-manager";
+      home.url = "github:nix-community/home-manager/release-21.05";
+      #home.url = "github:nix-community/home-manager";
       home.inputs.nixpkgs.follows = "nixos";
 
       darwin.url = "github:LnL7/nix-darwin";

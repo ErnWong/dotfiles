@@ -41,18 +41,32 @@ in
         matklad.rust-analyzer
         ms-vscode.cpptools
         arrterian.nix-env-selector
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
-        name = "prusti-assistant";
-        publisher = "viper-admin";
-        version = "0.9.0";
-        sha256 = "sha256-6Vcz4EPirN+d4VjzMky7BSHvqMdkf6GqwPiHuPNyaIU=";
-      }
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "prusti-assistant";
+          publisher = "viper-admin";
+          version = "0.9.0";
+          sha256 = "sha256-6Vcz4EPirN+d4VjzMky7BSHvqMdkf6GqwPiHuPNyaIU=";
+        }
         {
           name = "idris2-lsp";
           publisher = "bamboo";
           version = "0.7.0";
           sha256 = "sha256-8eLvHKUPBoge50wzOfp5aK/XVJElVzKtil8Yj+PwNUU=";
-        }];
+        }
+        {
+          name = "vscode-apl-language";
+          publisher = "OptimaSystems";
+          version = "0.0.7";
+          sha256 = "sha256-KkKuF/tPmMDeCpFOw1O4UyfliG8co3o9J3FNvc8wdgA=";
+        }
+        {
+          name = "vscode-apl-language-client";
+          publisher = "OptimaSystems";
+          version = "0.0.9";
+          sha256 = "sha256-KD8B8SwQR1pr/hM3dIfuNNCXz+ENb+UDnvq7Z9yxFhQ=";
+        }
+      ];
     };
     neovim = {
       enable = true;
