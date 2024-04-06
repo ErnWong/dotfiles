@@ -18,6 +18,7 @@
   ];
   boot.extraModulePackages = [ ];
 
+  networking.hostName = "yoroizuka";
   networking.networkmanager.enable = true;
 
   fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
