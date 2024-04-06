@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, home-manager, musnix, nixos-cosmic }@inputs: {
+  outputs = { nixpkgs, home-manager, musnix, nixos-cosmic, ... }@inputs: {
     nixosConfigurations = {
       yoroizuka = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
