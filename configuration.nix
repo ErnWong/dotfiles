@@ -119,6 +119,8 @@
     '';
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   environment.sessionVariables.EDITOR = "nvim";
   programs.neovim = {
     enable = true;
