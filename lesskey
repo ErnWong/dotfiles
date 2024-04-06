@@ -1,0 +1,2 @@
+#env
+LESS = --RAW-CONTROL-CHARS --LONG-PROMPT --use-color
