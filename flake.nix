@@ -18,6 +18,7 @@
         modules = [
           nixos-cosmic.nixosModules.default
           ./configuration.nix
+          ./hosts/yoroizuka.nix
         ];
       };
     };
