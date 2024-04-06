@@ -1,6 +1,6 @@
-{ ... }:
+{ lib, ... }:
 {
-  boot.loader.grub.enable = pkgs.lib.mkDefault true;
+  boot.loader.grub.enable = lib.mkDefault true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sdb";
   boot.initrd.availableKernelModules = [

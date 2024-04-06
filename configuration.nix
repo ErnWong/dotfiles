@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, ... }:
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -124,7 +124,7 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
-  }
+  };
 
   services.openssh = {
     enable = true;
@@ -149,4 +149,4 @@
   system.stateVersion = "23.11";
 
   time.timeZone = "Pacific/Auckland";
-};
+}
