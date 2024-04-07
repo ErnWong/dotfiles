@@ -18,6 +18,7 @@ in
     # Audio/Music
     pkgs.ardour
     pkgs.audacity
+    pkgs.lilypond
     pkgs.musescore
 
     # Comms
