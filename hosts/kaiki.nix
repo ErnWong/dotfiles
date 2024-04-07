@@ -17,11 +17,6 @@
       fsType = "btrfs";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
-    };
-
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
