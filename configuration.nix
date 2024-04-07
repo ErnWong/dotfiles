@@ -151,4 +151,12 @@
   system.stateVersion = "23.11";
 
   time.timeZone = "Pacific/Auckland";
+
+  users.users = {
+    ernwong = {
+      initialPassword = "pleasechangeyourpassword";
+      isNormalUser = true;
+      extraGroups = ["wheel"];
+    };
+  };
 }
