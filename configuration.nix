@@ -84,6 +84,8 @@
     kernel.realtime = true;
   };
 
+  networking.networkmanager.enable = true;
+
   nix = {
     gc.automatic = true;
 
