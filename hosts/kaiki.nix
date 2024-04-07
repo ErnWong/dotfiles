@@ -31,7 +31,6 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
-  networking.wireless.enable = true;
   networking.hostName = "kaiki";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
