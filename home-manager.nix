@@ -194,7 +194,7 @@ in
     withRuby = true;
   };
 
-  readline = {
+  programs.readline = {
     enable = true;
     bindings = {
       "\\t" = "menu-complete";
