@@ -32,7 +32,6 @@ in
 
     # Games
     pkgs.runelite
-    pkgs.factorio
     pkgs.factorio-headless
   ];
 

@@ -128,6 +128,10 @@
     vimAlias = true;
   };
 
+  programs.steam = {
+    enable = true;
+  };
+
   services.openssh = {
     enable = true;
     openFirewall = lib.mkDefault false;
