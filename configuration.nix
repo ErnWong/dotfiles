@@ -101,7 +101,7 @@
       substituters = [
         https://cache.nixos.org
         https://nix-community.cachix.org
-        httpd://cosmic.cachix.org
+        https://cosmic.cachix.org
         https://ernwong.cachix.org
       ];
       trusted-public-keys = [
