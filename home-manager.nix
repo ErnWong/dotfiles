@@ -113,7 +113,6 @@ in
     enable = true;
     extraConfig = builtins.readFile ./init.vim;
     extraPackages = with pkgs; [
-      rnix-lsp
       rust-analyzer
     ];
     plugins = with pkgs.vimPlugins; [
