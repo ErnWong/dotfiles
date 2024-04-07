@@ -22,6 +22,8 @@ in
 
     # Comms
     pkgs.discord
+    pkgs.chromium
+    pkgs.firefox
 
     # Dev
     pkgs.gdb
