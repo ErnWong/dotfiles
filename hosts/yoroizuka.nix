@@ -21,6 +21,8 @@
   networking.hostName = "yoroizuka";
   networking.networkmanager.enable = true;
 
+  nixpkgs.hostPlatform = "x86_64-linux";
+
   fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
