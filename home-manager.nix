@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   sessionVariables = {
     # Replace bold/underline with colors when using man
