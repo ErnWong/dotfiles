@@ -80,7 +80,7 @@
   };
 
   musnix = {
-    enable = true;
+    enable = false;
     kernel.realtime = true;
   };
 
