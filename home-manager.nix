@@ -30,6 +30,7 @@ in
     pkgs.gdb
     pkgs.gh
     pkgs.rlwrap
+    pkgs.samba
     pkgs.starship
     pkgs.warp-terminal
 
