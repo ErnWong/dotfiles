@@ -7,7 +7,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    musnix.url = "github:musnix/musnix";
+    musnix = {
+      url ="github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
