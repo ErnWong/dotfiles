@@ -27,6 +27,15 @@
           ./hosts/yoroizuka.nix
         ];
       };
+      kaiki = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          musnix.nixosModules.default
+          nixos-cosmic.nixosModules.default
+          ./configuration.nix
+          ./hosts/kaiki.nix
+        ];
+      };
     };
   };
 }
