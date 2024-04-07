@@ -81,6 +81,7 @@ in
       matklad.rust-analyzer
       ms-vscode.cpptools
       arrterian.nix-env-selector
+      jnoortheen.nix-ide
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "prusti-assistant";
@@ -112,8 +113,12 @@ in
   programs.neovim = {
     enable = true;
     extraConfig = builtins.readFile ./init.vim;
+    extraLuaConfig = ''
+      require('lspconfig').nil_ls.setup {}
+    '';
     extraPackages = with pkgs; [
       rust-analyzer
+      nil
     ];
     plugins = with pkgs.vimPlugins; [
       vim-sensible
