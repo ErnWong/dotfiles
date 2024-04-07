@@ -138,8 +138,8 @@
 
   services.earlyoom.enable = true;
 
-  # Allows pipewire ask for realtime priority.
-  security.rtkit.enable = true;
+  security.rtkit.enable = true; # Allows pipewire ask for realtime priority.
+  hardware.pulseaudio.enable = false; # Conflicts with pipewire.
   services.pipewire = {
     enable = true;
     alsa.enable = true;
