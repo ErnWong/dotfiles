@@ -19,6 +19,12 @@
       fsType = "btrfs";
     };
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+      options = [ "umask=0077" "defaults" ];
+    };
+
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
