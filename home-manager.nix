@@ -4,6 +4,7 @@ let
     # Replace bold/underline with colors when using man
     MANPAGER = "less --RAW-CONTROL-CHARS --use-color --color d+r --color u+b";
     STARSHIP_CONFIG = pkgs.writeText "starship.toml" (lib.fileContents ./starship.toml);
+    DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
   };
 in
 {
@@ -211,4 +212,15 @@ in
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+    };
+  };
 }
