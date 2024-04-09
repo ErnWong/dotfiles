@@ -178,7 +178,7 @@ let g:airline#extensions#tabline#left_alt_sep = '│'
 
 lua << EOF
   require('rust-tools').setup({})
-  require('lspconfig').rnix.setup({})
+  require('lspconfig').nil_ls.setup {}
 EOF
 
 " let g:syntastic_sass_checkers=["sasslint"]

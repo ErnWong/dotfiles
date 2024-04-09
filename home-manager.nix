@@ -116,9 +116,6 @@ in
   programs.neovim = {
     enable = true;
     extraConfig = builtins.readFile ./init.vim;
-    extraLuaConfig = ''
-      require('lspconfig').nil_ls.setup {}
-    '';
     extraPackages = with pkgs; [
       rust-analyzer
       nil
