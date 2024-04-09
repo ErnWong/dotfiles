@@ -112,6 +112,10 @@ in
         sha256 = "sha256-KD8B8SwQR1pr/hM3dIfuNNCXz+ENb+UDnvq7Z9yxFhQ=";
       }
     ];
+    userSettings = {
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "${pkgs.nil}/bin/nil";
+    };
   };
 
   programs.neovim = {
