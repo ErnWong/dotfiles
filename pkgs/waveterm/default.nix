@@ -34,6 +34,11 @@ in
       #yarn --frozen-lockfile
       cp -r "${nodeDeps}/node_modules" ./.
 
+      # Ask scripthaus to not write history to read-only home folder.
+      mkdir ./scripthaus
+      export SCRIPTHAUS_HOME=$(pwd)/scripthaus
+      touch ./scripthaus/.nohistory
+
       #scripthaus run electron-rebuild
       #scripthaus run build-backend
       #scripthaus run webpack-build-prod
