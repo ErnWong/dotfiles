@@ -128,7 +128,7 @@ in
 
     meta = with lib; {
       changelog = "https://github.com/wavetermdev/waveterm/releases/tag/${src.rev}";
-      description = "An unofficial, featureful, open source, community-driven, free Microsoft To-Do app";
+      description = "An Open-Source, AI-Native, Terminal Built for Seamless Workflows";
       homepage = "https://github.com/wavetermdev/wavetermn";
       license = licenses.asl20;
       mainProgram = pname;
