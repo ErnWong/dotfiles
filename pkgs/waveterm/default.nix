@@ -9,8 +9,7 @@ let
     sha256 = "sha256-NxUcBiwCK5ViAQVpx1P3pwvsr69p/ai/KztwZOFUt80=";
   };
   nodeDeps = pkgs.mkYarnModules {
-    inherit version;
-    pname = "${pname}Deps";
+    inherit pname version;
     packageJSON = "${src}/package.json";
     yarnLock = "${src}/yarn.lock";
   };
@@ -36,6 +35,7 @@ in
 
       #yarn --frozen-lockfile
       cp -r "${nodeDeps}/node_modules" ./.
+      cp -r "${nodeDeps}/deps/${pname}/node_modules" ./.
 
       # Ask scripthaus to not write history to read-only home folder.
       mkdir ./scripthaus
