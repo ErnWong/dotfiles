@@ -35,6 +35,9 @@
     # Games
     pkgs.runelite
     pkgs.factorio-headless
+
+    # Utils
+    pkgs.bitwarden
   ];
 
   home.enableDebugInfo = true;
