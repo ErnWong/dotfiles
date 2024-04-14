@@ -203,7 +203,11 @@ in
     withRuby = true;
   };
 
-  programs.nushell.enable = true;
+  programs.nushell = {
+    enable = true;
+    configFile.text = builtins.readFile ./config.nu;
+    environmentVariables = sessionVariables;
+  };
 
   programs.readline = {
     enable = true;
