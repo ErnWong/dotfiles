@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -31,6 +31,7 @@
     pkgs.samba
     pkgs.starship
     pkgs.warp-terminal
+    inputs.self.packages.x86_64-linux.waveterm
 
     # Games
     pkgs.runelite

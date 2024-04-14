@@ -17,6 +17,7 @@
     };
   };
   outputs = { nixpkgs, home-manager, musnix, nixos-cosmic, ... }@inputs: {
+    packages.x86_64-linux = import ./pkgs nixpkgs.legacyPackages.x86_64-linux;
     nixosConfigurations = {
       yoroizuka = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
