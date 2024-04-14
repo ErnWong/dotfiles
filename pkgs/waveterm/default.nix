@@ -8,10 +8,9 @@ let
     rev = "v${version}";
     sha256 = "sha256-NxUcBiwCK5ViAQVpx1P3pwvsr69p/ai/KztwZOFUt80=";
   };
-  nodeDeps = pkgs.mkYarnModules {
-    inherit pname version;
-    packageJSON = "${src}/package.json";
+  yarnOfflineCache = pkgs.fetchYarnDeps {
     yarnLock = "${src}/yarn.lock";
+    hash = "sha256-LGh2KmqwBfpf6MC77ME9dx43Gg3RxTpd+KSBIkEbfT0=";
   };
 in
   stdenv.mkDerivation {
@@ -30,12 +29,15 @@ in
 
     ];
 
-    buildPhase = ''
-      echo ${nodeDeps}
+    configurePhase = ''
+      # Yarn wants to write to ~/.yarnrc
+      export HOME=$(mktemp -d)
+    '';
 
-      #yarn --frozen-lockfile
-      cp -r "${nodeDeps}/node_modules" ./.
-      cp -r "${nodeDeps}/deps/${pname}/node_modules" ./.
+    buildPhase = ''
+      echo ${yarnOfflineCache}
+      yarn config --offline set yarn-offline-mirror ${yarnOfflineCache}
+      yarn install --offline --frozen-lockfile
 
       # Ask scripthaus to not write history to read-only home folder.
       mkdir ./scripthaus
