@@ -163,6 +163,7 @@
       initialPassword = "pleasechangeyourpassword";
       isNormalUser = true;
       extraGroups = ["wheel"];
+      shell = pkgs.nushell;
     };
   };
 }
