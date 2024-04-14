@@ -203,6 +203,8 @@ in
     withRuby = true;
   };
 
+  programs.nushell.enable = true;
+
   programs.readline = {
     enable = true;
     bindings = {
