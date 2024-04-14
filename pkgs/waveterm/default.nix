@@ -63,9 +63,13 @@ in
     ];
 
     buildPhase = ''
+      runHook preBuild
+
       pushd deps/${pname}
       node_modules/.bin/webpack --env prod
       popd
+
+      runHook postBuild
     '';
     
     postBuild = ''
@@ -79,6 +83,7 @@ in
       ls bin
 
       yarn --offline run electron-builder \
+        --dir \
         -l \
         -p never \
         -c electron-builder.config.js \
@@ -91,18 +96,18 @@ in
     installPhase = ''
       runHook preInstall
 
-      ## resources
-      #mkdir -p "$out/share/lib/${pname}"
-      #cp -r ./deps/${pname}/dist/*-unpacked/{locales,resources{,.pak}} "$out/share/lib/${pname}"
+      # resources
+      mkdir -p "$out/share/lib/${pname}"
+      cp -r ./deps/${pname}/make/*-unpacked/{locales,resources{,.pak}} "$out/share/lib/${pname}"
 
-      ## icons
+      # icons
       #install -Dm644 ./deps/${pname}/static/Icon.png $out/share/icons/hicolor/1024x1024/apps/${pname}.png
 
-      ## executable wrapper
-      #makeWrapper '${electron}/bin/electron' "$out/bin/${pname}" \
-      #  --add-flags "$out/share/lib/${pname}/resources/app.asar" \
-      #  --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}" \
-      #  --inherit-argv0
+      # executable wrapper
+      makeWrapper '${electron}/bin/electron' "$out/bin/${pname}" \
+        --add-flags "$out/share/lib/${pname}/resources/app.asar" \
+        --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}" \
+        --inherit-argv0
 
       runHook postInstall
     '';
