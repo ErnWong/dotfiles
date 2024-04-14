@@ -1,19 +1,16 @@
 { pkgs, lib, ... }:
-let
-  sessionVariables = {
-    # Replace bold/underline with colors when using man
-    MANPAGER = "less --RAW-CONTROL-CHARS --use-color --color d+r --color u+b";
-    STARSHIP_CONFIG = pkgs.writeText "starship.toml" (lib.fileContents ./starship.toml);
-    DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
-  };
-in
 {
   nixpkgs.config.allowUnfree = true;
 
   home.username = "ernwong";
   home.homeDirectory = "/home/ernwong";
 
-  home.sessionVariables = sessionVariables;
+  home.sessionVariables = {
+    # Replace bold/underline with colors when using man
+    MANPAGER = "less --RAW-CONTROL-CHARS --use-color --color d+r --color u+b";
+    STARSHIP_CONFIG = pkgs.writeText "starship.toml" (lib.fileContents ./starship.toml);
+    DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+  };
 
   home.packages = [
     # Audio/Music
@@ -45,7 +42,6 @@ in
   home.stateVersion = "23.11";
 
   programs.bash = {
-    inherit sessionVariables;
     enable = true;
     profileExtra = ''
       eval "$(${pkgs.starship}/bin/starship init bash)"
@@ -208,7 +204,6 @@ in
   programs.nushell = {
     enable = true;
     configFile.text = builtins.readFile ./config.nu;
-    environmentVariables = sessionVariables;
   };
 
   programs.readline = {
