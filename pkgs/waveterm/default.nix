@@ -78,7 +78,7 @@ in
       ls ${wavesrv}/bin
       mkdir ./bin
       ls ${waveshell}/bin
-      cp -r ${wavesrv}/bin/. ./bin/.
+      cp ${wavesrv}/bin/cmd ./bin/wavesrv.amd64
       cp -r ${waveshell}/bin/. ./bin/.
       ls bin
 
