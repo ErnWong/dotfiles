@@ -74,6 +74,7 @@
   };
 
   home-manager = {
+    extraSpecialArgs = { inherit inputs; };
     users = {
       ernwong = import ./home-manager.nix;
     };
