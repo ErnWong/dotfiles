@@ -86,6 +86,7 @@ in
       ms-vscode.cpptools
       arrterian.nix-env-selector
       jnoortheen.nix-ide
+      thenuprojectcontributors.vscode-nushell-lang
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "prusti-assistant";
@@ -151,6 +152,7 @@ in
       ats-vim
       vim-nix
       idris2-vim
+      nvim-nu
 
       # Coc
       #coc-marketplace
