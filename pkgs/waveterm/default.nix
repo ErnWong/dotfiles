@@ -25,12 +25,15 @@ in
       pkgs.nodejs_21
       pkgs.yarn
 
+      pkgs.breakpointHook
     ];
     buildInputs = [
 
     ];
 
     buildPhase = ''
+      echo ${nodeDeps}
+
       #yarn --frozen-lockfile
       cp -r "${nodeDeps}/node_modules" ./.
 
@@ -38,6 +41,11 @@ in
       mkdir ./scripthaus
       export SCRIPTHAUS_HOME=$(pwd)/scripthaus
       touch ./scripthaus/.nohistory
+
+      #mkdir ./bin
+      #ls .
+
+      echo $out
 
       #scripthaus run electron-rebuild
       #scripthaus run build-backend
