@@ -75,13 +75,10 @@ in
     postBuild = ''
       pushd deps/${pname}
 
-      ls ${wavesrv}/bin
       mkdir ./bin
-      ls ${waveshell}/bin
       cp ${wavesrv}/bin/cmd ./bin/wavesrv.amd64
       mkdir ./bin/mshell
       cp ${waveshell}/bin/waveshell ./bin/mshell/mshell-v0.6-linux.amd64
-      ls bin
 
       yarn --offline run electron-builder \
         --dir \
