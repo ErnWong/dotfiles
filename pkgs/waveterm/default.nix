@@ -79,7 +79,8 @@ in
       mkdir ./bin
       ls ${waveshell}/bin
       cp ${wavesrv}/bin/cmd ./bin/wavesrv.amd64
-      cp -r ${waveshell}/bin/. ./bin/.
+      mkdir ./bin/mshell
+      cp ${waveshell}/bin/waveshell ./bin/mshell/mshell-v0.6-linux.amd64
       ls bin
 
       yarn --offline run electron-builder \
