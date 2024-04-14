@@ -39,7 +39,7 @@ in
       echo ${yarnOfflineCache}
       yarn config --offline set yarn-offline-mirror ${yarnOfflineCache}
       fixup_yarn_lock yarn.lock
-      yarn install --offline --frozen-lockfile
+      yarn install --offline --frozen-lockfile --ignore-platform --ignore-scripts --no-progress --no-interactive
 
       # Ask scripthaus to not write history to read-only home folder.
       mkdir ./scripthaus
