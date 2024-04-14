@@ -22,6 +22,7 @@ in
       pkgs.scripthaus
       pkgs.nodejs_21
       pkgs.yarn
+      pkgs.fixup_yarn_lock
 
       pkgs.breakpointHook
     ];
@@ -37,6 +38,7 @@ in
     buildPhase = ''
       echo ${yarnOfflineCache}
       yarn config --offline set yarn-offline-mirror ${yarnOfflineCache}
+      fixup_yarn_lock yarn.lock
       yarn install --offline --frozen-lockfile
 
       # Ask scripthaus to not write history to read-only home folder.
