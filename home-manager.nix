@@ -152,6 +152,7 @@
       ats-vim
       vim-nix
       idris2-vim
+      nvim-treesitter # Required by nvim-nu
       nvim-nu
 
       # Coc
