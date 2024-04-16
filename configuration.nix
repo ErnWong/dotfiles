@@ -18,6 +18,7 @@
     pkgs.fd
     pkgs.file
     pkgs.git
+    pkgs.gnomeExtensions.system-monitor
     pkgs.gptfdisk
     pkgs.iputils
     pkgs.jq
