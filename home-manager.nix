@@ -6,7 +6,7 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-        "clipboard-indicator@Dieg0Js.github.io"
+        "pano@elhan.io"
         "Vitals@CoreCoding.com"
       ];
     };
@@ -51,7 +51,7 @@
     pkgs.bitwarden
 
     # Gnome extensions
-    pkgs.gnomeExtensions.clipboard-indicator
+    pkgs.gnomeExtensions.pano
     pkgs.gnomeExtensions.vitals
   ];
 
