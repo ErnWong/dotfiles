@@ -18,8 +18,6 @@
     pkgs.fd
     pkgs.file
     pkgs.git
-    pkgs.gnomeExtensions.clipboard-indicator
-    pkgs.gnomeExtensions.system-monitor
     pkgs.gptfdisk
     pkgs.iputils
     pkgs.jq

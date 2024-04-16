@@ -2,6 +2,16 @@
 {
   nixpkgs.config.allowUnfree = true;
 
+  dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "system-monitor@paradoxxx.zero.gmail.com"
+        "clipboard-indicator@Dieg0Js.github.io"
+      ];
+    };
+  };
+
   home.username = "ernwong";
   home.homeDirectory = "/home/ernwong";
 
@@ -39,6 +49,10 @@
 
     # Utils
     pkgs.bitwarden
+
+    # Gnome extensions
+    pkgs.gnomeExtensions.clipboard-indicator
+    pkgs.gnomeExtensions.system-monitor
   ];
 
   home.enableDebugInfo = true;
