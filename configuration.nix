@@ -28,6 +28,7 @@
     pkgs.nix-index
     pkgs.nmap
     pkgs.patchage
+    pkgs.raysession
     pkgs.ripgrep
     pkgs.skim
     pkgs.tealdeer
