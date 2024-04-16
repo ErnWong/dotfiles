@@ -140,7 +140,7 @@
     openFirewall = lib.mkDefault false;
   };
 
-  services.desktopManager.cosmic.enable = true;
+  #services.desktopManager.cosmic.enable = true;
   #services.displayManager.cosmic-greeter.enable = true;
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
