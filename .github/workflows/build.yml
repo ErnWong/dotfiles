@@ -29,4 +29,4 @@ jobs:
           name: ernwong
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-      - run: nixos-rebuild build .#${{ matrix.host }}
+      - run: nixos-rebuild build --flake .#${{ matrix.host }}
