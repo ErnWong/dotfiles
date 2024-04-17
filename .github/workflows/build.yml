@@ -24,9 +24,10 @@ jobs:
       - uses: cachix/install-nix-action@v26
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          nix_path: nixpkgs=channel:nixos-unstable
       - uses: cachix/cachix-action@v14
         with:
           name: ernwong
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-      - run: nixos-rebuild build --flake .#${{ matrix.host }}
+      - run: nix run nixpkgs#nixos-rebuild build --flake .#${{ matrix.host }}
