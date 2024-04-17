@@ -5,8 +5,20 @@ on:
       - master
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v26
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - run: nix flake check
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [yoroizuka, kaiki]
     steps:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v26
@@ -17,4 +29,4 @@ jobs:
           name: ernwong
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-      - run: nix flake check
+      - run: nixos-rebuild build .#${{ matrix.host }}
