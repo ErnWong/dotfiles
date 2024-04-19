@@ -29,6 +29,10 @@
     pkgs.lilypond
     pkgs.musescore
 
+    # Art
+    pkgs.krita
+    pkgs.inkscape
+
     # Comms
     pkgs.discord
     pkgs.chromium
