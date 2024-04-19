@@ -82,6 +82,11 @@
     };
   };
 
+  musnix = {
+    enable = false;
+    kernel.realtime = true;
+  };
+
   networking.networkmanager.enable = true;
 
   nix = {
@@ -156,6 +161,8 @@
     pulse.enable = true;
     jack.enable = true;
   };
+
+  system.stateVersion = "23.11";
 
   time.timeZone = "Pacific/Auckland";
 
