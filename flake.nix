@@ -16,8 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, home-manager, musnix, nixos-cosmic, ... }@inputs: {
-    packages.x86_64-linux = import ./pkgs nixpkgs.legacyPackages.x86_64-linux;
+  outputs = { self, nixpkgs, home-manager, musnix, nixos-cosmic, ... }@inputs: {
+    packages.x86_64-linux = import ./pkgs nixpkgs.legacyPackages.x86_64-linux // {
+      kernel = self.nixosConfigurations.minimal.config.boot.kernelPackages.kernel;
+    };
     nixosConfigurations = {
       minimal = nixpkgs.lib.nixosSystem {
         modules = [
