@@ -82,11 +82,6 @@
     };
   };
 
-  musnix = {
-    enable = false;
-    kernel.realtime = true;
-  };
-
   networking.networkmanager.enable = true;
 
   nix = {
