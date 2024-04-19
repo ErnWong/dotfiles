@@ -24,6 +24,7 @@
     pkgs.manix
     pkgs.moreutils
     pkgs.nix-index
+    pkgs.nix-output-monitor
     pkgs.nmap
     pkgs.patchage
     pkgs.raysession
