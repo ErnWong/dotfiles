@@ -155,8 +155,6 @@
     jack.enable = true;
   };
 
-  system.stateVersion = "23.11";
-
   time.timeZone = "Pacific/Auckland";
 
   users.users = {

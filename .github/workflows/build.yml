@@ -26,7 +26,7 @@ jobs:
           name: ernwong
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-      - run: nix run nixpkgs#nixos-rebuild -- build --flake .#kernel
+      - run: nix run nixpkgs#nixos-rebuild -- build --flake .#minimal
   build:
     runs-on: ubuntu-latest
     needs: build-kernel
