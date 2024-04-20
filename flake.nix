@@ -16,28 +16,22 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
     let
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+      treefmt = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
     in rec {
-      formatter.x86_64-linux = pkgs.nixfmt;
+      formatter.x86_64-linux = treefmt.config.build.wrapper;
 
       checks.x86_64-linux = packages.x86_64-linux // {
-        format = pkgs.stdenvNoCC.mkDerivation {
-          name = "format";
-          dontBuild = true;
-          doCheck = true;
-          src = ./.;
-          nativeBuildInputs = [
-            pkgs.nixfmt-rfc-style
-          ];
-          checkPhase = ''
-            nixfmt check
-            touch "$out"
-          '';
-        };
+        format = treefmt.config.build.check inputs.self;
 
         lint-statix = pkgs.stdenvNoCC.mkDerivation {
           name = "lint-statix";
