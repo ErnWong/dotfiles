@@ -8,7 +8,7 @@
   makeWrapper,
   copyDesktopItems,
   makeDesktopItem,
-  breakpointHook
+  breakpointHook,
 }:
 let
   pname = "waveterm";
@@ -44,94 +44,94 @@ let
   };
   electron = electron_29;
 in
-  mkYarnPackage rec {
-    inherit pname src version;
+mkYarnPackage rec {
+  inherit pname src version;
 
-    packageJSON = "${src}/package.json";
+  packageJSON = "${src}/package.json";
 
-    env.ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
+  env.ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
 
-    offlineCache = fetchYarnDeps {
-      yarnLock = "${src}/yarn.lock";
-      hash = "sha256-LGh2KmqwBfpf6MC77ME9dx43Gg3RxTpd+KSBIkEbfT0=";
-    };
+  offlineCache = fetchYarnDeps {
+    yarnLock = "${src}/yarn.lock";
+    hash = "sha256-LGh2KmqwBfpf6MC77ME9dx43Gg3RxTpd+KSBIkEbfT0=";
+  };
 
-    nativeBuildInputs = [
-      makeWrapper
-      copyDesktopItems
-      breakpointHook
-    ];
+  nativeBuildInputs = [
+    makeWrapper
+    copyDesktopItems
+    breakpointHook
+  ];
 
-    buildPhase = ''
-      runHook preBuild
+  buildPhase = ''
+    runHook preBuild
 
-      pushd deps/${pname}
-      node_modules/.bin/webpack --env prod
-      popd
+    pushd deps/${pname}
+    node_modules/.bin/webpack --env prod
+    popd
 
-      runHook postBuild
-    '';
-    
-    postBuild = ''
-      pushd deps/${pname}
+    runHook postBuild
+  '';
 
-      mkdir ./bin
-      cp ${wavesrv}/bin/cmd ./bin/wavesrv.amd64
-      mkdir ./bin/mshell
-      cp ${waveshell}/bin/waveshell ./bin/mshell/mshell-v0.6-linux.amd64
+  postBuild = ''
+    pushd deps/${pname}
 
-      yarn --offline run electron-builder \
-        --dir \
-        -l \
-        -p never \
-        -c electron-builder.config.js \
-        -c.electronDist=${electron}/libexec/electron \
-        -c.electronVersion=${electron.version}
+    mkdir ./bin
+    cp ${wavesrv}/bin/cmd ./bin/wavesrv.amd64
+    mkdir ./bin/mshell
+    cp ${waveshell}/bin/waveshell ./bin/mshell/mshell-v0.6-linux.amd64
 
-      popd
-    '';
+    yarn --offline run electron-builder \
+      --dir \
+      -l \
+      -p never \
+      -c electron-builder.config.js \
+      -c.electronDist=${electron}/libexec/electron \
+      -c.electronVersion=${electron.version}
 
-    installPhase = ''
-      runHook preInstall
+    popd
+  '';
 
-      # resources
-      mkdir -p "$out/share/lib/${pname}"
-      cp -r ./deps/${pname}/make/*-unpacked/{locales,resources{,.pak}} "$out/share/lib/${pname}"
+  installPhase = ''
+    runHook preInstall
 
-      # icons
-      #install -Dm644 ./deps/${pname}/static/Icon.png $out/share/icons/hicolor/1024x1024/apps/${pname}.png
+    # resources
+    mkdir -p "$out/share/lib/${pname}"
+    cp -r ./deps/${pname}/make/*-unpacked/{locales,resources{,.pak}} "$out/share/lib/${pname}"
 
-      # executable wrapper
-      makeWrapper '${electron}/bin/electron' "$out/bin/${pname}" \
-        --add-flags "$out/share/lib/${pname}/resources/app.asar" \
-        --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}" \
-        --inherit-argv0
+    # icons
+    #install -Dm644 ./deps/${pname}/static/Icon.png $out/share/icons/hicolor/1024x1024/apps/${pname}.png
 
-      runHook postInstall
-    '';
-    # Do not attempt generating a tarball for contents again.
-    # note: `doDist = false;` does not work.
-    distPhase = "true";
+    # executable wrapper
+    makeWrapper '${electron}/bin/electron' "$out/bin/${pname}" \
+      --add-flags "$out/share/lib/${pname}/resources/app.asar" \
+      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}" \
+      --inherit-argv0
 
-    desktopItems = [
-      (makeDesktopItem {
-        name = pname;
-        exec = pname;
-        icon = pname;
-        desktopName = "Wave Terminal";
-        genericName = "An Open-Source, AI-Native, Terminal Built for Seamless Workflows";
-        comment = meta.description;
-        categories = [ "System" ];
-        startupWMClass = pname;
-      })
-    ];
+    runHook postInstall
+  '';
+  # Do not attempt generating a tarball for contents again.
+  # note: `doDist = false;` does not work.
+  distPhase = "true";
 
-    meta = with lib; {
-      changelog = "https://github.com/wavetermdev/waveterm/releases/tag/${src.rev}";
-      description = "An Open-Source, AI-Native, Terminal Built for Seamless Workflows";
-      homepage = "https://github.com/wavetermdev/wavetermn";
-      license = licenses.asl20;
-      mainProgram = pname;
-      inherit (electron.meta) platforms;
-    };
-  }
+  desktopItems = [
+    (makeDesktopItem {
+      name = pname;
+      exec = pname;
+      icon = pname;
+      desktopName = "Wave Terminal";
+      genericName = "An Open-Source, AI-Native, Terminal Built for Seamless Workflows";
+      comment = meta.description;
+      categories = [ "System" ];
+      startupWMClass = pname;
+    })
+  ];
+
+  meta = with lib; {
+    changelog = "https://github.com/wavetermdev/waveterm/releases/tag/${src.rev}";
+    description = "An Open-Source, AI-Native, Terminal Built for Seamless Workflows";
+    homepage = "https://github.com/wavetermdev/wavetermn";
+    license = licenses.asl20;
+    mainProgram = pname;
+    inherit (electron.meta) platforms;
+  };
+}

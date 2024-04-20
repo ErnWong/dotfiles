@@ -9,7 +9,7 @@
     };
 
     musnix = {
-      url ="github:musnix/musnix";
+      url = "github:musnix/musnix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-cosmic = {
@@ -23,11 +23,13 @@
     };
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
       treefmt = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-    in rec {
+    in
+    rec {
       formatter.x86_64-linux = treefmt.config.build.wrapper;
 
       checks.x86_64-linux = packages.x86_64-linux // {
@@ -38,9 +40,7 @@
           dontBuild = true;
           doCheck = true;
           src = ./.;
-          nativeBuildInputs = [
-            pkgs.statix
-          ];
+          nativeBuildInputs = [ pkgs.statix ];
           checkPhase = ''
             statix check .
             touch "$out"
@@ -52,9 +52,7 @@
           dontBuild = true;
           doCheck = true;
           src = ./.;
-          nativeBuildInputs = [
-            pkgs.deadnix
-          ];
+          nativeBuildInputs = [ pkgs.deadnix ];
           checkPhase = ''
             deadnix --fail
             touch "$out"
@@ -66,7 +64,9 @@
 
       nixosConfigurations = {
         yoroizuka = inputs.nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             inputs.musnix.nixosModules.default
             inputs.nixos-cosmic.nixosModules.default
@@ -75,7 +75,9 @@
           ];
         };
         kaiki = inputs.nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             inputs.musnix.nixosModules.default
             inputs.nixos-cosmic.nixosModules.default
@@ -84,5 +86,5 @@
           ];
         };
       };
-  };
+    };
 }

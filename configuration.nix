@@ -1,8 +1,11 @@
-{ pkgs, inputs, lib, ... }:
 {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+{
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   environment.systemPackages = [
     pkgs.ark
@@ -67,16 +70,14 @@
       pkgs.roboto
       pkgs.roboto-slab
       pkgs.roboto-mono
-      (pkgs.nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-        ];
-      })
+      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs;
+    };
     users = {
       ernwong = import ./home-manager.nix;
     };
@@ -98,8 +99,16 @@
       auto-optimise-store = true;
       sandbox = true;
       allowed-users = [ "@wheel" ];
-      trusted-users = [ "root" "@wheel" ];
-      system-features = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+      system-features = [
+        "nixos-test"
+        "benchmark"
+        "big-parallel"
+        "kvm"
+      ];
 
       substituters = [
         "https://cache.nixos.org"
@@ -115,7 +124,10 @@
         "ernwong.cachix.org-1:wCKqhqe6/Wxq70Gft+qV2Xh/qfufrvfELgSnkpi58yA="
       ];
 
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
 
     extraOptions = ''
@@ -170,7 +182,7 @@
     ernwong = {
       initialPassword = "pleasechangeyourpassword";
       isNormalUser = true;
-      extraGroups = ["wheel"];
+      extraGroups = [ "wheel" ];
       shell = pkgs.nushell;
     };
   };

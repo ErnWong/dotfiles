@@ -1,3 +1,1 @@
-pkgs: {
-  waveterm = pkgs.callPackage ./waveterm { };
-}
+pkgs: { waveterm = pkgs.callPackage ./waveterm { }; }

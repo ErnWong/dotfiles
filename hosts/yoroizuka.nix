@@ -12,17 +12,15 @@
     "rtsx_pci_sdmmc"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [
-    "kvm-intel"
-  ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   networking.hostName = "yoroizuka";
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
-  swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
-  ];
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+  };
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 }
