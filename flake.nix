@@ -35,29 +35,17 @@
       checks.x86_64-linux = packages.x86_64-linux // {
         format = treefmt.config.build.check inputs.self;
 
-        lint-statix = pkgs.stdenvNoCC.mkDerivation {
-          name = "lint-statix";
-          dontBuild = true;
-          doCheck = true;
-          src = ./.;
-          nativeBuildInputs = [ pkgs.statix ];
-          checkPhase = ''
-            statix check .
-            touch "$out"
-          '';
-        };
+        lint-statix = pkgs.runCommandLocal "lint-statix" { nativeBuildInputs = [ pkgs.statix ]; } ''
+          cd ${inputs.self}
+          statix check .
+          touch "$out"
+        '';
 
-        lint-deadnix = pkgs.stdenvNoCC.mkDerivation {
-          name = "lint-deadnix";
-          dontBuild = true;
-          doCheck = true;
-          src = ./.;
-          nativeBuildInputs = [ pkgs.deadnix ];
-          checkPhase = ''
-            deadnix --fail
-            touch "$out"
-          '';
-        };
+        lint-deadnix = pkgs.runCommandLocal "lint-deadnix" { nativeBuildInputs = [ pkgs.deadnix ]; } ''
+          cd ${inputs.self}
+          deadnix --fail
+          touch "$out"
+        '';
       };
 
       packages.x86_64-linux = import ./pkgs pkgs;
