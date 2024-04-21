@@ -45,7 +45,7 @@ in
           name = "annotate-${name}-script";
           script = checker.to-github-annotations;
         }}
-        if $annotations | is-empty {
+        if ($annotations | is-empty) {
           echo 'Checks passed'
         } else {
           echo $annotations
