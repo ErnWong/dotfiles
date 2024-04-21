@@ -23,7 +23,7 @@ in
     name = "check-${name}";
     src = self;
     build = ''
-      if open --raw ${machine-readable-output."${name}"} | is-empty {
+      if (open --raw ${machine-readable-output."${name}"} | is-empty) {
         echo 'Checks passed'
       } else {
         ${nuhelper.mkScript {
