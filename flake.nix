@@ -52,7 +52,7 @@
     rec {
       formatter.x86_64-linux = treefmt.config.build.wrapper;
 
-      checks.x86_64-linux = packages.x86_64-linux // checkers.checks {
+      checks.x86_64-linux = packages.x86_64-linux // checkers.checks // {
         format = treefmt.config.build.check inputs.self;
 
         #lint-statix = pkgs.runCommandLocal (if true == true then "lint-statix" else "") { nativeBuildInputs = [ pkgs.statix ]; } ''
