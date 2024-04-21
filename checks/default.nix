@@ -1,4 +1,4 @@
-{ pkgs, nuhelper, ... }:
+{ self, pkgs, nuhelper, ... }:
 let
 unused=if true == true then 1 else 0;
 unused2=if true == true then 1 else 0;
@@ -10,7 +10,7 @@ unused2=if true == true then 1 else 0;
   machine-readable-output = builtins.mapAttrs (name: checker: nuhelper.mkDerivation {
     name = "machine-readable-output-${name}";
     inherit (checker) packages;
-    src = ./..;
+    src = self;
     build = ''
       ${nuhelper.mkScript {
         name = "machine-readable-output-${name}-script";
@@ -23,7 +23,7 @@ in
   checks = builtins.mapAttrs (name: checker: nuhelper.mkDerivation {
     inherit (checker) packages;
     name = "check-${name}";
-    src = ./..;
+    src = self;
     build = ''
       if open --raw ${machine-readable-output} | is-empty {
         echo 'Checks passed'
