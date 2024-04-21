@@ -21,32 +21,50 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nuenv.url = "github:DeterminateSystems/nuenv";
   };
 
   outputs =
     inputs:
     let
-      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+      pkgs = import inputs.nixpkgs {
+        overlays = [ inputs.nuenv.overlays.default ];
+        system = "x86_64-linux";
+      };
       treefmt = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+      checkers = import ./checks pkgs;
     in
     rec {
       formatter.x86_64-linux = treefmt.config.build.wrapper;
 
-      checks.x86_64-linux = packages.x86_64-linux // {
+      checks.x86_64-linux = packages.x86_64-linux // checkers.checks {
         format = treefmt.config.build.check inputs.self;
 
-        lint-statix = pkgs.runCommandLocal (if true == true then "lint-statix" else "") { nativeBuildInputs = [ pkgs.statix ]; } ''
-          cd ${inputs.self}
-          statix check .
-          echo ::error file=flake.nix,line=41,endline=41,title=TestError::Do commands work from external checks?
-          touch "$out"
-        '';
+        #lint-statix = pkgs.runCommandLocal (if true == true then "lint-statix" else "") { nativeBuildInputs = [ pkgs.statix ]; } ''
+        #  cd ${inputs.self}
+        #  touch "$out"
+        #  statix check . || statix check . --format json > "$out"
+        #  echo ::error file=flake.nix,line=41,endline=41,title=TestError::Do commands work from external checks?
+        #'';
 
-        lint-deadnix = pkgs.runCommandLocal "lint-deadnix" { nativeBuildInputs = [ pkgs.deadnix ]; } ''
-          cd ${inputs.self}
-          deadnix --fail
-          touch "$out"
-        '';
+        #lint-deadnix = pkgs.runCommandLocal "lint-deadnix" { nativeBuildInputs = [ pkgs.deadnix ]; } ''
+        #  cd ${inputs.self}
+        #  touch "$out"
+        #  deadnix --fail || deadnix --fail --output-format json > "$out"
+        #'';
+      };
+
+      apps.x86_64-linux = checkers.apps // {
+        #annotate-statix = {
+        #  type = "app";
+        #  program = pkgs.nuenv.writeScriptBin {
+        #    name = "annotate-statix";
+        #    text = ''
+        #      open --raw "${checks.x86_64-linux.lint-statix}" | from json 
+        #    '';
+        #  };
+        #};
       };
 
       packages.x86_64-linux = import ./pkgs pkgs;
