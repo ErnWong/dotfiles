@@ -1,48 +1,46 @@
-pkgs:
+{ pkgs, nuhelper, ... }:
 let
   checkers = {
     #treefmt = import ./treefmt.nix pkgs;
     statix = import ./statix.nix pkgs;
     deadnix = import ./deadnix.nix pkgs;
   };
-  machine-readable-output = builtins.mapAttrs (name: checker: pkgs.nuenv.mkDerivation {
-    inherit name;
+  machine-readable-output = builtins.mapAttrs (name: checker: nuhelper.mkDerivation {
+    name = "machine-readable-output-${name}";
     inherit (checker) packages;
     src = ./..;
-    system = "x86_64-linux";
     build = ''
-      ${pkgs.nuenv.writeScriptBin {
-        inherit name;
+      ${nuhelper.mkScript {
+        name = "machine-readable-output-${name}-script";
         script = checker.machine-readable;
-      }} > $out
+      }} | save $env.out
     '';
   }) checkers;
 in
 {
-  checks = builtins.mapAttrs (name: checker: pkgs.nuenv.mkDerivation {
+  checks = builtins.mapAttrs (name: checker: nuhelper.mkDerivation {
     inherit (checker) packages;
     name = "check-${name}";
     src = ./..;
-    system = "x86_64-linux";
     build = ''
       if open --raw ${machine-readable-output} | is-empty {
-        'Checks passed'
+        echo 'Checks passed'
       } else {
-        ${pkgs.nuenv.writeScriptBin {
-          inherit name;
+        ${nuhelper.mkScript {
+          name = "check-${name}-script";
           script = checker.human-readable;
         }}
       }
-      touch $out
+      touch $env.out
     '';
   }) checkers;
   apps = builtins.mapAttrs (name: checker: {
     type = "app";
-    program = "" + pkgs.nuenv.writeScriptBin {
+    program = "" + nuhelper.mkScript {
       name = "annotate-${name}";
       script = ''
-        open --raw ${machine-readable-output."${name}"} | ${pkgs.nuenv.writeScriptBin {
-          name = "annotate-${name}";
+        open --raw ${machine-readable-output."${name}"} | ${nuhelper.mkScript {
+          name = "annotate-${name}-script";
           script = checker.to-github-annotations;
         }}
       '';

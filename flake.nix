@@ -22,6 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixpkgs-older-nushell.url = "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.555097%2Brev-91050ea1e57e50388fa87a3302ba12d188ef723a/018c3450-2363-7c34-883b-4ba70b1eb7ae/source.tar.gz"; # Provides Nushell v0.87.1
     nuenv.url = "github:DeterminateSystems/nuenv";
   };
 
@@ -33,7 +34,20 @@
         system = "x86_64-linux";
       };
       treefmt = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-      checkers = import ./checks pkgs;
+      older-nushell = (import inputs.nixpkgs-older-nushell { system = "x86_64-linux"; }).nushell;
+      nuhelper = {
+        mkDerivation = inputs.nuenv.lib.mkNushellDerivation older-nushell pkgs.system;
+        mkScript = { name, script } : pkgs.writeTextFile {
+          inherit name;
+          executable = true;
+          text = ''
+            #!${pkgs.lib.getExe pkgs.nushell} --stdin
+
+            ${script}
+          '';
+        };
+      };
+      checkers = import ./checks (inputs // { inherit pkgs nuhelper; });
     in
     rec {
       formatter.x86_64-linux = treefmt.config.build.wrapper;
