@@ -1,7 +1,6 @@
 { self, pkgs, nuhelper, ... }:
 let
   checkers = {
-    #treefmt = import ./treefmt.nix pkgs;
     statix = import ./statix.nix pkgs;
     deadnix = import ./deadnix.nix pkgs;
   };
