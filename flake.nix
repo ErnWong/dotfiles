@@ -54,32 +54,9 @@
 
       checks.x86_64-linux = packages.x86_64-linux // checkers.checks // {
         format = treefmt.config.build.check inputs.self;
-
-        #lint-statix = pkgs.runCommandLocal (if true == true then "lint-statix" else "") { nativeBuildInputs = [ pkgs.statix ]; } ''
-        #  cd ${inputs.self}
-        #  touch "$out"
-        #  statix check . || statix check . --format json > "$out"
-        #  echo ::error file=flake.nix,line=41,endline=41,title=TestError::Do commands work from external checks?
-        #'';
-
-        #lint-deadnix = pkgs.runCommandLocal "lint-deadnix" { nativeBuildInputs = [ pkgs.deadnix ]; } ''
-        #  cd ${inputs.self}
-        #  touch "$out"
-        #  deadnix --fail || deadnix --fail --output-format json > "$out"
-        #'';
       };
 
-      apps.x86_64-linux = checkers.apps // {
-        #annotate-statix = {
-        #  type = "app";
-        #  program = pkgs.nuenv.writeScriptBin {
-        #    name = "annotate-statix";
-        #    text = ''
-        #      open --raw "${checks.x86_64-linux.lint-statix}" | from json 
-        #    '';
-        #  };
-        #};
-      };
+      apps.x86_64-linux = checkers.apps;
 
       packages.x86_64-linux = import ./pkgs pkgs;
 
