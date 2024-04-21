@@ -1,5 +1,4 @@
-pkgs:
-{
+pkgs: {
   packages = [ pkgs.statix ];
   machine-readable = "statix check . --format json";
   human-readable = "statix check .";

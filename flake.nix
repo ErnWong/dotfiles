@@ -39,24 +39,25 @@
       older-nushell = (import inputs.nixpkgs-older-nushell { system = "x86_64-linux"; }).nushell;
       nuhelper = {
         mkDerivation = inputs.nuenv.lib.mkNushellDerivation older-nushell pkgs.system;
-        mkScript = { name, script } : pkgs.writeTextFile {
-          inherit name;
-          executable = true;
-          text = ''
-            #!${pkgs.lib.getExe older-nushell} --stdin
+        mkScript =
+          { name, script }:
+          pkgs.writeTextFile {
+            inherit name;
+            executable = true;
+            text = ''
+              #!${pkgs.lib.getExe older-nushell} --stdin
 
-            ${script}
-          '';
-        };
+              ${script}
+            '';
+          };
       };
       checkers = import ./checks (inputs // { inherit pkgs nuhelper; });
     in
     rec {
       formatter.x86_64-linux = treefmt.config.build.wrapper;
 
-      checks.x86_64-linux = packages.x86_64-linux // checkers.checks // {
-        format = treefmt.config.build.check inputs.self;
-      };
+      checks.x86_64-linux =
+        packages.x86_64-linux // checkers.checks // { format = treefmt.config.build.check inputs.self; };
 
       apps.x86_64-linux = checkers.apps;
 
