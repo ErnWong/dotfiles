@@ -41,10 +41,16 @@ in
     program = "" + nuhelper.mkScript {
       name = "annotate-${name}";
       script = ''
-        open --raw ${machine-readable-output."${name}"} | ${nuhelper.mkScript {
+        let annotations = open --raw ${machine-readable-output."${name}"} | ${nuhelper.mkScript {
           name = "annotate-${name}-script";
           script = checker.to-github-annotations;
         }}
+        if annotations | is-empty {
+          echo 'Checks passed'
+        } else {
+          echo $annotations
+          exit 1
+        }
       '';
     };
   }) checkers;
