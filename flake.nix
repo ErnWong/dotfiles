@@ -35,7 +35,7 @@
       checks.x86_64-linux = packages.x86_64-linux // {
         format = treefmt.config.build.check inputs.self;
 
-        lint-statix = pkgs.runCommandLocal "lint-statix" { nativeBuildInputs = [ pkgs.statix ]; } ''
+        lint-statix = pkgs.runCommandLocal (if true == true then "lint-statix" else "") { nativeBuildInputs = [ pkgs.statix ]; } ''
           cd ${inputs.self}
           statix check .
           echo ::error file=flake.nix,line=41,endline=41,title=TestError::Do commands work from external checks?
