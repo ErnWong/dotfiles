@@ -1,5 +1,7 @@
 { pkgs, nuhelper, ... }:
 let
+unused=if true == true then 1 else 0;
+unused2=if true == true then 1 else 0;
   checkers = {
     #treefmt = import ./treefmt.nix pkgs;
     statix = import ./statix.nix pkgs;
