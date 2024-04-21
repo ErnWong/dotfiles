@@ -38,6 +38,7 @@
         lint-statix = pkgs.runCommandLocal "lint-statix" { nativeBuildInputs = [ pkgs.statix ]; } ''
           cd ${inputs.self}
           statix check .
+          echo ::error file=flake.nix,line=41,endline=41,title=TestError::Do commands work from external checks?
           touch "$out"
         '';
 
