@@ -84,8 +84,8 @@
   programs.chromium = {
     enable = true;
     extensions = [
-     { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
-     { id = "likgccmbimhjbgkjambclfkhldnlhbnn"; } # Yomitan
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+      { id = "likgccmbimhjbgkjambclfkhldnlhbnn"; } # Yomitan
     ];
   };
 
