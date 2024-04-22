@@ -44,7 +44,6 @@
 
     # Comms
     pkgs.discord
-    pkgs.chromium
     pkgs.firefox
 
     # Dev
@@ -80,6 +79,14 @@
     initExtra = ''
       eval "$(${pkgs.direnv}/bin/direnv hook bash)"
     '';
+  };
+
+  programs.chromium = {
+    enabled = true;
+    extensions = [
+     { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+     { id = "likgccmbimhjbgkjambclfkhldnlhbnn"; } # Yomitan
+    ];
   };
 
   programs.direnv = {
