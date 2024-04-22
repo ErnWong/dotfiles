@@ -82,7 +82,7 @@
   };
 
   programs.chromium = {
-    enabled = true;
+    enable = true;
     extensions = [
      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
      { id = "likgccmbimhjbgkjambclfkhldnlhbnn"; } # Yomitan
