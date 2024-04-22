@@ -38,6 +38,10 @@
     pkgs.krita
     pkgs.inkscape
 
+    # Video/streaming
+    pkgs.davinci-resolve
+    pkgs.obs-studio
+
     # Comms
     pkgs.discord
     pkgs.chromium
