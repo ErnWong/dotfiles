@@ -71,6 +71,7 @@
       pkgs.roboto-slab
       pkgs.roboto-mono
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      pkgs._0xproto
     ];
   };
 
