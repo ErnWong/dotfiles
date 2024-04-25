@@ -73,6 +73,12 @@
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       pkgs._0xproto
     ];
+
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "0xProto" ];
+      };
+    };
   };
 
   home-manager = {

@@ -15,6 +15,9 @@
         "Vitals@CoreCoding.com"
       ];
     };
+    "org/gnome/desktop/interface" = {
+      monospace-font-name = "0xProto";
+    };
   };
 
   home.username = "ernwong";
@@ -153,6 +156,8 @@
     userSettings = {
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      "editor.fontFamily" = "'0xProto', 'Droid Sans Mono', 'monospace', monospace";
+      "editor.fontLigatures" = true;
     };
   };
 
