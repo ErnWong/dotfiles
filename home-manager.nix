@@ -57,6 +57,7 @@
     pkgs.starship
     pkgs.warp-terminal
     inputs.self.packages.x86_64-linux.waveterm
+    pkgs.zed-editor
 
     # Games
     pkgs.runelite
