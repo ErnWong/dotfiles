@@ -284,7 +284,8 @@
         ExecStart = ''
           ${pkgs.rclone}/bin/rclone mount gdrive: ${mountdir} \
             --cache-dir ${cachedir} \
-            --vfs-cache-mode full
+            --vfs-cache-mode full \
+            --vfs-cache-max-age 1000000h
         '';
         ExecStop = "${pkgs.fuse}/bin/fusermount -u ${mountdir}";
         Type = "notify";
