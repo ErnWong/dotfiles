@@ -62,6 +62,7 @@
     # Games
     pkgs.runelite
     pkgs.factorio-headless
+    pkgs.openrct2
 
     # Utils
     pkgs.bitwarden
