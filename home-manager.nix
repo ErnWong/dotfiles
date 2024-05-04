@@ -2,6 +2,7 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }:
 {
@@ -271,6 +272,22 @@
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+
+  systemd.user.services.gdrive_mount =
+    let
+      mountdir = "${config.home.homeDirectory}/gdrive";
+    in {
+      Unit.description = "Mount Google Drive";
+      Install.WantedBy = [ "multi-user.target" ];
+      Service = {
+        ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
+        ExecStart = "${pkgs.rclone}/bin/rclone mount gdrive: ${mountdir}";
+        ExecStop = "${pkgs.fuse}/bin/fusermount -u ${mountdir}";
+        Type = "notify";
+        Restart = "always";
+        RestartSec = "10s";
+      };
+    };
 
   xdg.mimeApps = {
     enable = true;
