@@ -63,7 +63,7 @@
     # Games
     pkgs.runelite
     pkgs.factorio-headless
-    pkgs.openrct2
+    inputs.self.packages.x86_64-linux.openrct2-develop
 
     # Utils
     pkgs.bitwarden
