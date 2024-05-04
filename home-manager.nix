@@ -276,11 +276,16 @@
   systemd.user.services.gdrive-mount =
     let
       mountdir = "${config.home.homeDirectory}/gdrive";
+      cachedir = "${config.home.homeDirectory}/gdrive.cache";
     in {
       Unit.Description = "Mount Google Drive";
       Install.WantedBy = [ "multi-user.target" ];
       Service = {
-        ExecStart = "${pkgs.rclone}/bin/rclone mount gdrive: ${mountdir}";
+        ExecStart = ''
+          ${pkgs.rclone}/bin/rclone mount gdrive: ${mountdir} \
+            --cache-dir ${cachedir} \
+            --vfs-cache-mode full
+        '';
         ExecStop = "${pkgs.fuse}/bin/fusermount -u ${mountdir}";
         Type = "notify";
         Restart = "always";
