@@ -273,14 +273,13 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  systemd.user.services.gdrive_mount =
+  systemd.user.services.gdrive-mount =
     let
       mountdir = "${config.home.homeDirectory}/gdrive";
     in {
-      Unit.description = "Mount Google Drive";
+      Unit.Description = "Mount Google Drive";
       Install.WantedBy = [ "multi-user.target" ];
       Service = {
-        ExecStartPre = "/run/current-system/sw/bin/mkdir -p ${mountdir}";
         ExecStart = "${pkgs.rclone}/bin/rclone mount gdrive: ${mountdir}";
         ExecStop = "${pkgs.fuse}/bin/fusermount -u ${mountdir}";
         Type = "notify";
