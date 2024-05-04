@@ -66,6 +66,7 @@
 
     # Utils
     pkgs.bitwarden
+    pkgs.rclone
 
     # Gnome extensions
     pkgs.gnomeExtensions.pano
