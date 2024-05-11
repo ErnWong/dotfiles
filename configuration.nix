@@ -21,6 +21,7 @@
     pkgs.fd
     pkgs.file
     pkgs.git
+    pkgs.gnupg
     pkgs.gptfdisk
     pkgs.iputils
     pkgs.jq
