@@ -282,7 +282,7 @@
     in
     {
       Unit.Description = "Mount Google Drive";
-      Install.WantedBy = [ "multi-user.target" ];
+      Install.WantedBy = [ "default.target" ];
       Service = {
         ExecStart = ''
           ${pkgs.rclone}/bin/rclone mount gdrive: ${mountdir} \
