@@ -148,6 +148,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  programs.gnupg.agent.enable = true;
+
   environment.sessionVariables.EDITOR = "nvim";
   programs.neovim = {
     enable = true;
