@@ -277,7 +277,8 @@
     let
       mountdir = "${config.home.homeDirectory}/gdrive";
       cachedir = "${config.home.homeDirectory}/gdrive.cache";
-    in {
+    in
+    {
       Unit.Description = "Mount Google Drive";
       Install.WantedBy = [ "multi-user.target" ];
       Service = {
