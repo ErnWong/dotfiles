@@ -43,8 +43,8 @@ let
   openrct2-src = fetchFromGitHub {
     owner = "OpenRCT2";
     repo = "OpenRCT2";
-    rev = "cd528665e64d252dbfe754268432d32df569002a";
-    hash = "sha256-ob/aAigeianS+XggfHHRgDKpQ4VZWLQdn9lpQ2OZdZ0=";
+    rev = "b0a3888d4de0950b4e9065a2861aaf00aba79592";
+    hash = "sha256-c24tSGOzIWdQn9oKC/leYrRZfg7ebPpjeadH+thEzHA=";
   };
 
   objects-src = fetchFromGitHub {
