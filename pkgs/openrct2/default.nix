@@ -147,18 +147,16 @@ stdenv.mkDerivation {
 
   preConfigure =
     # Verify that the correct version of each third party repository is used.
-    (
-      let
-        versionCheck = cmakeKey: version: ''
-          grep -q '^set(${cmakeKey}_VERSION "${version}")$' CMakeLists.txt \
-            || (echo "${cmakeKey} differs from expected version!"; exit 1)
-        '';
-      in
-      (versionCheck "OBJECTS" objects-version)
-      + (versionCheck "OPENMSX" openmsx-version)
-      + (versionCheck "OPENSFX" opensfx-version)
-      + (versionCheck "TITLE_SEQUENCE" title-sequences-version)
-    );
+    let
+      versionCheck = cmakeKey: version: ''
+        grep -q '^set(${cmakeKey}_VERSION "${version}")$' CMakeLists.txt \
+          || (echo "${cmakeKey} differs from expected version!"; exit 1)
+      '';
+    in
+    (versionCheck "OBJECTS" objects-version)
+    + (versionCheck "OPENMSX" openmsx-version)
+    + (versionCheck "OPENSFX" opensfx-version)
+    + (versionCheck "TITLE_SEQUENCE" title-sequences-version);
 
   preFixup = "ln -s $out/share/openrct2 $out/bin/data";
 
