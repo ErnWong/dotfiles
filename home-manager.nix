@@ -290,7 +290,12 @@
             --vfs-cache-mode full \
             --vfs-cache-max-age 1000000h
         '';
-        ExecStop = "${pkgs.fuse}/bin/fusermount -u ${mountdir}";
+        # Unmount explicitly rather than just killing rclone, or else
+        # rclone will return a non-zero exit code.
+        # See: https://forum.rclone.org/t/non-zero-exit-status-from-rclone-mount-even-with-clean-unmount/38884/3
+        # Also, run fusermount from /run/wrappers/bin rather than from
+        # pkgs.fuse, so that fusermount will have the right permissions.
+        ExecStop = "/run/wrappers/bin/fusermount -u ${mountdir}";
         Type = "notify";
         Restart = "always";
         RestartSec = "10s";
