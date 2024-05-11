@@ -14,6 +14,7 @@
       enabled-extensions = [
         "pano@elhan.io"
         "Vitals@CoreCoding.com"
+        "caffeine@patapon.info"
       ];
     };
     "org/gnome/desktop/interface" = {
@@ -72,6 +73,7 @@
     # Gnome extensions
     pkgs.gnomeExtensions.pano
     pkgs.gnomeExtensions.vitals
+    pkgs.gnomeExtensions.caffeine
   ];
 
   home.enableDebugInfo = true;
