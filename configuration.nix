@@ -61,6 +61,7 @@
     packages = [
       pkgs.powerline-fonts
       pkgs.dejavu_fonts
+      pkgs.google-fonts
       pkgs.noto-fonts
       pkgs.noto-fonts-cjk
       pkgs.noto-fonts-emoji
