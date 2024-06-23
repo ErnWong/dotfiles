@@ -15,7 +15,10 @@
           (old.buildFHSEnv (
             a
             // {
-              extraBwrapArgs = a.extraBwrapArgs ++ [ "--bind /run/opengl-driver/etc/OpenCL /etc/OpenCL" ];
+              extraBwrapArgs = a.extraBwrapArgs ++ [
+                "--bind /run/opengl-driver/etc/OpenCL /etc/OpenCL"
+                "--setenv FUSION_FONTS /run/current-system/sw/share/X11/fonts "
+              ];
             }
           ));
       });
