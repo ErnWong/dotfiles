@@ -144,7 +144,7 @@
       with pkgs.vscode-extensions;
       [
         vscodevim.vim
-        matklad.rust-analyzer
+        rust-lang.rust-analyzer
         ms-vscode.cpptools
         arrterian.nix-env-selector
         jnoortheen.nix-ide
