@@ -8,7 +8,7 @@
 {
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
-    (final: prev: {
+    (_final: prev: {
       davinci-resolve = prev.davinci-resolve.override (old: {
         buildFHSEnv =
           a:
