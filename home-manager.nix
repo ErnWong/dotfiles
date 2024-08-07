@@ -112,6 +112,16 @@
     package = pkgs.brave;
     extensions = [
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+      # Yomitan
+      # Manual steps:
+      # - Disable "Show this welcome guide on browser startup"
+      # - Download dictionaries:
+      #    - Priority 1: 旺文社国語辞典 第十一版 from https://drive.google.com/drive/folders/1TRylrqtoYi2hW9dAjci5cugNzde_WRTM
+      #    - Priority 2: Jitendex https://github.com/stephenmk/Jitendex https://github.com/stephenmk/stephenmk.github.io/releases
+      #    - Priority 3: 明鏡国語辞典 from https://drive.google.com/drive/folders/1TRylrqtoYi2hW9dAjci5cugNzde_WRTM
+      #    - Priority 4: Pitch Accent/アクセント辞典v2 (Recommended).zip
+      #    - Priority 5: Grammar/Dictionary of Japanese Grammar.zip
+      #    - Priority 6: Kanji/[Kanji] KANJIDIC (English).zip
       { id = "likgccmbimhjbgkjambclfkhldnlhbnn"; } # Yomitan
     ];
   };
