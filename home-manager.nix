@@ -55,6 +55,7 @@
     pkgs.audacity
     pkgs.lilypond
     pkgs.musescore
+    pkgs.puredata
 
     # Art
     pkgs.krita
