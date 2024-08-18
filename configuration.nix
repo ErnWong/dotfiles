@@ -92,10 +92,11 @@
     };
   };
 
-  musnix = {
-    enable = false;
-    kernel.realtime = true;
-  };
+  # Disabled for now. Getting das_watchdog errors and problems sleeping, so going to experiment disabling musnix to see if it helps.
+  #musnix = {
+  #  enable = false;
+  #  kernel.realtime = true;
+  #};
 
   networking.networkmanager.enable = true;
 

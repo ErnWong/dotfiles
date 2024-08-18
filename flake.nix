@@ -69,7 +69,7 @@
             inherit inputs;
           };
           modules = [
-            inputs.musnix.nixosModules.default
+            #inputs.musnix.nixosModules.default
             inputs.nixos-cosmic.nixosModules.default
             ./configuration.nix
             ./hosts/yoroizuka.nix
@@ -80,7 +80,7 @@
             inherit inputs;
           };
           modules = [
-            inputs.musnix.nixosModules.default
+            #inputs.musnix.nixosModules.default
             inputs.nixos-cosmic.nixosModules.default
             ./configuration.nix
             ./hosts/kaiki.nix
