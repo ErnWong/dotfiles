@@ -174,6 +174,8 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   services.earlyoom.enable = true;
 
   security.rtkit.enable = true; # Allows pipewire ask for realtime priority.
