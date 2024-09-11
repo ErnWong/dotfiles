@@ -1,4 +1,6 @@
 pkgs: {
   openrct2-develop = pkgs.callPackage ./openrct2 { };
-  waveterm = pkgs.callPackage ./waveterm { };
+
+  # TODO electron 29 is eol
+  #waveterm = pkgs.callPackage ./waveterm { };
 }

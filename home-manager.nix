@@ -76,7 +76,7 @@
     pkgs.samba
     pkgs.starship
     pkgs.warp-terminal
-    inputs.self.packages.x86_64-linux.waveterm
+    #inputs.self.packages.x86_64-linux.waveterm TODO waveterm not used atm so I'm not updating it, and electron 29 is eol
     pkgs.zed-editor
 
     # Games
