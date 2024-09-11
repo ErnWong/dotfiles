@@ -12,6 +12,7 @@
     pkgs.binutils
     pkgs.bottom
     pkgs.coreutils
+    pkgs.coppwr
     pkgs.curl
     pkgs.ddrescue
     pkgs.ddrescueview
