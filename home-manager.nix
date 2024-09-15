@@ -330,6 +330,20 @@
         RestartSec = "10s";
       };
     };
+  # Workaround hang on suspend due to FUSE rclone statfs taking too long:
+  # https://github.com/ErnWong/dotfiles/issues/36
+  systemd.user.services.gdrive-mount-suspend = {
+    Unit.Description = "Suspend Google Drive Mount";
+    Unit.Before = [ "sleep.target" ];
+    Unit.StopWhenUnneeded = true;
+    Install.WantedBy = [ "sleep.target" ];
+    Service = {
+      ExecStart = "${pkgs.systemd}/bin/systemctl --user stop gdrive-mount.service";
+      ExecStop = "${pkgs.systemd}/bin/systemctl --user start gdrive-mount.service";
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+  };
 
   xdg.mimeApps = {
     enable = true;
