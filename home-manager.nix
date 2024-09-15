@@ -304,32 +304,34 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
-  systemd.user.services.gdrive-mount =
-    let
-      mountdir = "${config.home.homeDirectory}/gdrive";
-      cachedir = "${config.home.homeDirectory}/gdrive.cache";
-    in
-    {
-      Unit.Description = "Mount Google Drive";
-      Install.WantedBy = [ "default.target" ];
-      Service = {
-        ExecStart = ''
-          ${pkgs.rclone}/bin/rclone mount gdrive: ${mountdir} \
-            --cache-dir ${cachedir} \
-            --vfs-cache-mode full \
-            --vfs-cache-max-age 1000000h
-        '';
-        # Unmount explicitly rather than just killing rclone, or else
-        # rclone will return a non-zero exit code.
-        # See: https://forum.rclone.org/t/non-zero-exit-status-from-rclone-mount-even-with-clean-unmount/38884/3
-        # Also, run fusermount from /run/wrappers/bin rather than from
-        # pkgs.fuse, so that fusermount will have the right permissions.
-        ExecStop = "/run/wrappers/bin/fusermount -u ${mountdir}";
-        Type = "notify";
-        Restart = "always";
-        RestartSec = "10s";
-      };
-    };
+  # Disabled as this is suspected to be causing hangs upon waking from sleep.
+  # See: https://github.com/ErnWong/dotfiles/issues/36
+  #systemd.user.services.gdrive-mount =
+  #  let
+  #    mountdir = "${config.home.homeDirectory}/gdrive";
+  #    cachedir = "${config.home.homeDirectory}/gdrive.cache";
+  #  in
+  #  {
+  #    Unit.Description = "Mount Google Drive";
+  #    Install.WantedBy = [ "default.target" ];
+  #    Service = {
+  #      ExecStart = ''
+  #        ${pkgs.rclone}/bin/rclone mount gdrive: ${mountdir} \
+  #          --cache-dir ${cachedir} \
+  #          --vfs-cache-mode full \
+  #          --vfs-cache-max-age 1000000h
+  #      '';
+  #      # Unmount explicitly rather than just killing rclone, or else
+  #      # rclone will return a non-zero exit code.
+  #      # See: https://forum.rclone.org/t/non-zero-exit-status-from-rclone-mount-even-with-clean-unmount/38884/3
+  #      # Also, run fusermount from /run/wrappers/bin rather than from
+  #      # pkgs.fuse, so that fusermount will have the right permissions.
+  #      ExecStop = "/run/wrappers/bin/fusermount -u ${mountdir}";
+  #      Type = "notify";
+  #      Restart = "always";
+  #      RestartSec = "10s";
+  #    };
+  #  };
 
   xdg.mimeApps = {
     enable = true;
