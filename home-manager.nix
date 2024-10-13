@@ -87,6 +87,7 @@
     # Utils
     pkgs.bitwarden
     pkgs.rclone
+    pkgs.numbat # Alternative to Google search's unit-aware calculator
 
     # Gnome extensions
     pkgs.gnomeExtensions.pano
