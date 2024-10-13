@@ -30,6 +30,7 @@
     pkgs.moreutils
     pkgs.nix-index
     pkgs.nix-output-monitor
+    pkgs.nix-tree
     pkgs.nmap
     #pkgs.patchage TODO: broken by https://github.com/NixOS/nixpkgs/pull/320924 - See https://github.com/NixOS/nixpkgs/issues/326354
     pkgs.raysession
