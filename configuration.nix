@@ -10,7 +10,7 @@
   environment.systemPackages = [
     pkgs.ark
     pkgs.binutils
-    pkgs.bottom
+    pkgs.btop
     pkgs.coreutils
     pkgs.coppwr
     pkgs.curl
