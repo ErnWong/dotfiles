@@ -72,6 +72,7 @@
     # Dev
     pkgs.gdb
     pkgs.gh
+    pkgs.gitbutler
     pkgs.rlwrap
     pkgs.samba
     pkgs.starship
