@@ -49,13 +49,28 @@
     DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
   };
 
-  home.packages = [
+  home.packages = inputs.self.packages.x86_64-linux.soundfonts-freepats ++ [
     # Audio/Music
+    pkgs.aeolus
     pkgs.ardour
     pkgs.audacity
+    pkgs.calf
+    pkgs.carla
     pkgs.lilypond
+    pkgs.lsp-plugins
     pkgs.musescore
     pkgs.puredata
+    pkgs.setbfree
+    pkgs.sfizz
+    pkgs.tap-plugins
+    pkgs.x42-plugins
+    pkgs.zam-plugins
+
+    # Sound fonts
+    pkgs.soundfont-arachno
+    pkgs.soundfont-fluid
+    pkgs.soundfont-generaluser
+    pkgs.soundfont-ydp-grand
 
     # Art
     pkgs.krita
