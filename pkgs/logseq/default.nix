@@ -20,13 +20,13 @@
   node-pre-gyp,
   python3,
   nodePackages,
+  pkgs,
 }: let
-  cljs-time = fetchFromGitHub {
-    repo = "cljs-time";
-    owner = "logseq";
-    rev = "5704fbf48d3478eedcf24d458c8964b3c2fd59a9";
-    hash = "sha256-IApL+SEm7AhbTN7J/1KiAKTx7rd53hchRh3jmPQ412g=";
-  };
+  cljsdeps = import ./deps.nix { inherit (pkgs) fetchMavenArtifact fetchgit lib; };
+  classp = cljsdeps.makeClasspaths {};
+  clojureWithClasspath = pkgs.writeShellScriptBin "clojure" ''  
+      exec ${clojure}/bin/clojure -Scp ${classp}
+  '';
 in
   stdenv.mkDerivation rec {
     pname = "logseq";
@@ -42,7 +42,7 @@ in
       nodejs_18
       yarn
       # jdk
-      clojure
+      clojureWithClasspath
       nodePackages.parcel
       nodePackages.node-gyp-build
       git
@@ -80,10 +80,6 @@ in
 
     configurePhase = ''
       runHook preConfigure
-
-      # Hack @github:ErnWong
-      sed -i 's|:git/url "https://github.com/logseq/cljs-time"|:local/root "${cljs-time}"|g' deps.edn
-      sed -i 's|:sha     "5704fbf48d3478eedcf24d458c8964b3c2fd59a9"||g' deps.edn
 
       export HOME=$(mktemp -d)
 
