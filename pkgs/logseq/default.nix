@@ -107,7 +107,13 @@ in
 
       yarn config --offline set yarn-offline-mirror "$yarnOfflineCache" --ignore-optional
       # yarn config --offline set yarn-offline-mirror "$amplifyOfflineCache"
+      #yarn --offline release-electron
       yarn --offline release
+    '';
+
+    installPhase = ''
+      # For release-electron cp -ar static/out $out
+      cp -ar static $out
     '';
 
     meta = {
