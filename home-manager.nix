@@ -58,6 +58,7 @@
     pkgs.carla
     pkgs.lilypond
     pkgs.lsp-plugins
+    pkgs.mamba
     pkgs.musescore
     pkgs.puredata
     pkgs.setbfree
