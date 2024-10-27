@@ -88,7 +88,13 @@
     # Organisation
     # pkgs.logseq
     #((import inputs.nixpkgs-logseq-fix { system = "x86_64-linux"; }).logseq)
-    inputs.self.packages.x86_64-linux.logseq
+    #inputs.self.packages.x86_64-linux.logseq
+    #((import inputs.nixpkgs-logseq {
+    #  system = "x86_64-linux";
+    #  config.permittedInsecurePackages = [
+    #    "electron-27.3.11"
+    #  ];
+    #}).logseq)
     pkgs.silverbullet
 
     # Dev
