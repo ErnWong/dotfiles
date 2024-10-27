@@ -1,35 +1,53 @@
-{ lib, stdenv, fetchurl, p7zip }:
-  map
-    ({pname, version, fname, license, url, sha256, homepage}:
-      stdenv.mkDerivation {
-        pname = "freepats-${pname}";
-        version = "unstable-${version}";
+{
+  lib,
+  stdenv,
+  fetchurl,
+  p7zip,
+}:
+map
+  (
+    {
+      pname,
+      version,
+      fname,
+      license,
+      url,
+      sha256,
+      homepage,
+    }:
+    stdenv.mkDerivation {
+      pname = "freepats-${pname}";
+      version = "unstable-${version}";
 
-        buildInputs = [ p7zip ];
-        src = fetchurl { inherit url sha256; };
+      buildInputs = [ p7zip ];
+      src = fetchurl { inherit url sha256; };
 
-        unpackCmd = ''
-          if [[ $curSrc == "*.7z" ]]; then
-            7z x "$curSrc"
-          elif [[ $curSrc == "*.tar.*" ]]; then
-            tar xf "$curSrc"
-          else
-            echo Unrecognised format $curSrc
-            return 1
-          fi
-        '';
+      unpackCmd = ''
+        if [[ $curSrc == "*.7z" ]]; then
+          7z x "$curSrc"
+        elif [[ $curSrc == "*.tar.*" ]]; then
+          tar xf "$curSrc"
+        else
+          echo Unrecognised format $curSrc
+          return 1
+        fi
+      '';
 
-        installPhase = ''
-          find . -type f -exec install -Dm 755 "{}" "$out/share/soundfonts/${fname}/{}" \;
-        '';
+      installPhase = ''
+        find . -type f -exec install -Dm 755 "{}" "$out/share/soundfonts/${fname}/{}" \;
+      '';
 
-        phases = ["unpackPhase" "installPhase"];
+      phases = [
+        "unpackPhase"
+        "installPhase"
+      ];
 
-        meta = with lib; {
-          inherit license homepage;
-          platforms = platforms.all;
-        };
-      })
+      meta = with lib; {
+        inherit license homepage;
+        platforms = platforms.all;
+      };
+    }
+  )
   [
     {
       pname = "upright-piano-kw";
@@ -167,212 +185,3 @@
       license = lib.licenses.cc0;
     }
   ]
-
-/*
-  [
-    stdenv.mkDerivation {
-      pname = "freepats-upright-piano-kw";
-      version = "unstable-2022-02-21";
-
-      src = fetchurl {
-        url = "https://freepats.zenvoid.org/Piano/UprightPianoKW/UprightPianoKW-SF2-20220221.7z";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 UprightPianoKW-*.sf2 $out/share/soundfonts/UprightPianoKW.sf2
-      '';
-
-      meta = with lib; {
-        description = "Acoustic Kawai upright piano sf2 soundfont";
-        homepage = "https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html";
-        license = licenses.cc0;
-        platforms = platforms.all;
-      };
-    }
-    stdenv.mkDerivation {
-      pname = "freepats-ydp-grand-piano";
-      version = "unstable-2016-08-04";
-
-      src = fetchurl {
-        url = "https://freepats.zenvoid.org/Piano/YDP-GrandPiano/YDP-GrandPiano-SF2-20160804.tar.bz2";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 YDP-GrandPiano-*.sf2 $out/share/soundfonts/YDP-GrandPiano.sf2
-      '';
-
-      meta = with lib; {
-        description = "Acoustic grand piano sf2 soundfont";
-        homepage = "https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html";
-        license = licenses.cc-by-30;
-        platforms = platforms.all;
-      };
-    }
-    stdenv.mkDerivation {
-      pname = "freepats-salamander-grand-piano";
-      version = "unstable-2020-06-02";
-
-      src = fetchurl {
-        url = "https://freepats.zenvoid.org/Piano/SalamanderGrandPiano/SalamanderGrandPiano-SF2-V3+20200602.tar.xz";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 SalamanderGrandPiano-*.sf2 $out/share/soundfonts/SalamanderGrandPiano.sf2
-      '';
-
-      meta = with lib; {
-        description = "Acoustic Yamaha C5 sf2 soundfont";
-        homepage = "https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html";
-        license = licenses.cc-by-30;
-        platforms = platforms.all;
-      };
-    }
-    stdenv.mkDerivation {
-      pname = "freepats-old-piano-fb";
-      version = "unstable-2020-04-01";
-
-      src = fetchurl {
-        url = "https://github.com/freepats/old-piano-FB/releases/download/2020-04-01/PianoFB-SF2-20200401.7z";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 PianoFB-*.sf2 $out/share/soundfonts/PianoFB.sf2
-      '';
-
-      meta = with lib; {
-        description = "Francis Bacon player piano (Honky-tonk) sf2 soundfont";
-        homepage = "https://freepats.zenvoid.org/Piano/honky-tonk-piano.html";
-        license = licenses.cc0;
-        platforms = platforms.all;
-      };
-    }
-    stdenv.mkDerivation {
-      pname = "freepats-fm-piano1";
-      version = "unstable-2020-04-01";
-
-      src = fetchurl {
-        url = "https://github.com/freepats/fm-piano1/releases/download/2019-09-16/FM-Piano1-SF2-20190916.7z";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 FM-Piano1-*.sf2 $out/share/soundfonts/FM-Piano1.sf2
-      '';
-
-      meta = with lib; {
-        description = "Imitation of Yamaha DX7 electric piano sf2 soundfont";
-        homepage = "https://freepats.zenvoid.org/ElectricPiano/synthesized-piano.html";
-        license = licenses.cc0;
-        platforms = platforms.all;
-      };
-    }
-    stdenv.mkDerivation {
-      pname = "freepats-fm-piano2";
-      version = "unstable-2016-11-12";
-
-      src = fetchurl {
-        url = "https://github.com/freepats/fm-piano2/releases/download/2016-11-12/FM-Piano2-SF2-20161112.7z";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 FM-Piano2-*.sf2 $out/share/soundfonts/FM-Piano2.sf2
-      '';
-
-      meta = with lib; {
-        description = "Imitation of Yamaha DX7 electric piano sf2 soundfont";
-        homepage = "https://freepats.zenvoid.org/ElectricPiano/synthesized-piano.html";
-        license = licenses.cc0;
-        platforms = platforms.all;
-      };
-    }
-    stdenv.mkDerivation {
-      pname = "freepat-glass";
-      version = "unstable-2019-12-27";
-
-      src = fetchurl {
-        url = "https://freepats.zenvoid.org/ChromaticPercussion/Glass/Glass-SFZ+FLAC-20191227.7z";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 Glass-*.sfz $out/share/soundfonts/Glass/Glass.sfz
-        install -Dm644 samples $out/share/soundfonts/Glass/samples
-      '';
-
-      meta = with lib; {
-        description = "Glasses of water sfz soundfont";
-        homepage = "https://freepats.zenvoid.org/ChromaticPercussion/glass.html";
-        license = licenses.cc0;
-        platforms = platforms.all;
-      };
-    }
-    stdenv.mkDerivation {
-      pname = "freepat-hang";
-      version = "unstable-2022-03-30";
-
-      src = fetchurl {
-        url = "https://github.com/freepats/hang-D-minor/releases/download/2022-03-30/Hang-D-minor-SFZ+FLAC-20220330.7z";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 Hang-D-minor-*.sfz $out/share/soundfonts/Hang-D-minor/Hang-D-minor.sfz
-        install -Dm644 samples $out/share/soundfonts/Hang-D-minor/samples
-      '';
-
-      meta = with lib; {
-        description = "Hang (tuned in D minor) sfz soundfont";
-        homepage = "https://freepats.zenvoid.org/ChromaticPercussion/hang.html";
-        license = licenses.cc0;
-        platforms = platforms.all;
-      };
-    }
-    stdenv.mkDerivation {
-      pname = "freepat-tubular-bells";
-      version = "unstable-2020-07-29";
-
-      src = fetchurl {
-        url = "https://freepats.zenvoid.org/ChromaticPercussion/TubularBells/TubularBells-SFZ+FLAC-20200729.tar.gz";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 TubularBells-*.sfz $out/share/soundfonts/TubularBells/TubularBells.sfz
-        install -Dm644 samples $out/share/soundfonts/TubularBells/samples
-      '';
-
-      meta = with lib; {
-        description = "Tubular bells sfz soundfont";
-        homepage = "https://freepats.zenvoid.org/ChromaticPercussion/tubular-bells.html";
-        license = licenses.cc0;
-        platforms = platforms.all;
-      };
-    }
-    stdenv.mkDerivation {
-      pname = "freepat-tubular-bells";
-      version = "unstable-2020-07-29";
-
-      src = fetchurl {
-        url = "https://freepats.zenvoid.org/ChromaticPercussion/TubularBells/TubularBells-SFZ+FLAC-20200729.tar.gz";
-        sha256 = "sha256-0kPcPhgqYN8qFukoKMGCHPPrV0i0Xi4r3Pqc968FYCY=";
-      };
-
-      installPhase = ''
-        install -Dm644 TubularBells-*.sfz $out/share/soundfonts/TubularBells/TubularBells.sfz
-        install -Dm644 samples $out/share/soundfonts/TubularBells/samples
-      '';
-
-      meta = with lib; {
-        description = "Tubular bells sfz soundfont";
-        homepage = "https://freepats.zenvoid.org/ChromaticPercussion/tubular-bells.html";
-        license = licenses.cc0;
-        platforms = platforms.all;
-      };
-    }
-  ]
-  */
