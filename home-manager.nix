@@ -86,7 +86,8 @@
     pkgs.firefox
 
     # Organisation
-    #pkgs.logseq (TODO electron 28 EOL)
+    # pkgs.logseq
+    #((import inputs.nixpkgs-logseq-fix { system = "x86_64-linux"; }).logseq)
     pkgs.silverbullet
 
     # Dev

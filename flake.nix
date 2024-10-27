@@ -26,6 +26,9 @@
     # haven't figured out yet, so we're using an older version of nushell.
     nixpkgs-older-nushell.url = "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.555097%2Brev-91050ea1e57e50388fa87a3302ba12d188ef723a/018c3450-2363-7c34-883b-4ba70b1eb7ae/source.tar.gz"; # Provides Nushell v0.87.1
     nuenv.url = "github:DeterminateSystems/nuenv";
+
+    # TODO https://github.com/logseq/logseq/issues/10851 https://github.com/NixOS/nixpkgs/pull/347293 https://github.com/NixOS/nixpkgs/issues/341683
+    nixpkgs-logseq-fix.url = "github:aktaboot/nixpkgs/logseq-source";
   };
 
   outputs =

@@ -113,6 +113,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-logseq-fix": {
+      "locked": {
+        "lastModified": 1725639512,
+        "narHash": "sha256-gMfIwYxzzqTJA631c+TSYijbB8/Tw2vipVlNScXTJso=",
+        "owner": "aktaboot",
+        "repo": "nixpkgs",
+        "rev": "8a31ee8f8c4118de64fb05848650e2c7d0079b54",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aktaboot",
+        "ref": "logseq-source",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-older-nushell": {
       "locked": {
         "lastModified": 1701436327,
@@ -182,6 +198,7 @@
         "musnix": "musnix",
         "nixos-cosmic": "nixos-cosmic",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-logseq-fix": "nixpkgs-logseq-fix",
         "nixpkgs-older-nushell": "nixpkgs-older-nushell",
         "nuenv": "nuenv",
         "treefmt-nix": "treefmt-nix"
