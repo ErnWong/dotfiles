@@ -22,7 +22,11 @@
   nodePackages,
   pkgs,
   which,
+  srcOnly,
+  removeReferencesTo,
+  zx,
 }: let
+  nodeSources = srcOnly nodejs_18;
   cljsdeps = import ./deps.nix { inherit (pkgs) fetchMavenArtifact fetchgit lib; };
   classp = cljsdeps.makeClasspaths {};
   clojureWithClasspath = pkgs.writeShellScriptBin "clojure" ''  
@@ -60,6 +64,7 @@ in
       git
 
       which
+      zx # for installing static/yarn.lock with scripts
     ];
     buildInputs = [
       fixup-yarn-lock
@@ -153,12 +158,33 @@ in
       cp ${resourcesOfflineCache}/yarn.lock static/yarn.lock
       fixup-yarn-lock static/yarn.lock
       cat static/yarn.lock
+      echo before install static/yarn.lock
+      pushd static
+      yarn --offline install --frozen-lockfile --offline --no-progress --non-interactive --ignore-optional
+      popd
+      echo after install static/yarn.lock
+      ls -la static/
 
       patchShebangs node_modules/
       patchShebangs tldraw/node_modules/
       patchShebangs packages/amplify/node_modules/
 
       runHook postConfigure
+    '';
+
+    # We need to build the binaries of all instances
+    # of better-sqlite3. It has a native part that it wants to build using a
+    # script which is disallowed.
+    # Adapted from mkYarnModules, via https://github.com/NixOS/nixpkgs/blob/05a785be68dab86d48733e5d48d20605c4180eea/pkgs/by-name/ta/taler-wallet-core/package.nix#L84
+    preBuild = ''
+      for f in $(find -path '*/node_modules/better-sqlite3' -type d); do
+        (cd "$f" && (
+        npm run build-release --offline --nodedir="${nodeSources}"
+        find build -type f -exec \
+          ${lib.getExe removeReferencesTo} \
+          -t "${nodeSources}" {} \;
+        ))
+      done
     '';
 
     buildPhase = ''
