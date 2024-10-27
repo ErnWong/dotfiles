@@ -85,6 +85,10 @@
     pkgs.discord
     pkgs.firefox
 
+    # Organisation
+    #pkgs.logseq (TODO electron 28 EOL)
+    pkgs.silverbullet
+
     # Dev
     pkgs.gdb
     pkgs.gh
