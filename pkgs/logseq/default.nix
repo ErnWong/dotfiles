@@ -81,6 +81,10 @@ in
     configurePhase = ''
       runHook preConfigure
 
+      # Hack @github:ErnWong
+      sed -i 's|:git/url "https://github.com/logseq/cljs-time"|:local/root "${cljs-time}"|g' deps.edn
+      sed -i 's|:sha     "5704fbf48d3478eedcf24d458c8964b3c2fd59a9"||g' deps.edn
+
       export HOME=$(mktemp -d)
 
       yarn config --offline set yarn-offline-mirror "$tldrawOfflineCache"
