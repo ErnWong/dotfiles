@@ -1165,8 +1165,12 @@ let repos = [
       inherit repos;
       artifactId = "boot-cljs-test";
       groupId = "crisptrutski";
-      sha512 = "eea310cdd415714d61d0b9810d5c320075694496511160c35ac5a33aea3f2c409e9996b13c9ee45acf58e510c2b31f8705ddec5de3940cb39c2d0e44cc988271";
-      version = "0.2.2-20160402.204547-3";
+      # This version doesn't exist on CDN:
+      #sha512 = "eea310cdd415714d61d0b9810d5c320075694496511160c35ac5a33aea3f2c409e9996b13c9ee45acf58e510c2b31f8705ddec5de3940cb39c2d0e44cc988271";
+      #version = "0.2.2-20160402.204547-3";
+      # Using this instead:
+      sha512 = "sha512-fuGZoSUd8+6UQr8G6J88E2iSPGKfiErQIXZlmJPnvdm08sgBtc3HK7YTI8AMff2Cog3dvEZF98t5JGY14wTX4Q==";
+      version = "0.2.2";
 
     };
     paths = [ src ];
