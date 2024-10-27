@@ -156,11 +156,13 @@ in
       mkdir -p static
       #cp ${./resources-yarn.lock} static/yarn.lock
       cp ${resourcesOfflineCache}/yarn.lock static/yarn.lock
+      cp resources/package.json static/package.json
       fixup-yarn-lock static/yarn.lock
       cat static/yarn.lock
       echo before install static/yarn.lock
       pushd static
-      yarn --offline install --frozen-lockfile --offline --no-progress --non-interactive --ignore-optional
+      yarn config --offline set yarn-offline-mirror "$resourcesOfflineCache"
+      yarn --offline install --frozen-lockfile --offline --no-progress --non-interactive --ignore-optional --ignore-scripts
       popd
       echo after install static/yarn.lock
       ls -la static/
