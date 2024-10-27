@@ -29,13 +29,27 @@
 
     # TODO https://github.com/logseq/logseq/issues/10851 https://github.com/NixOS/nixpkgs/pull/347293 https://github.com/NixOS/nixpkgs/issues/341683
     nixpkgs-logseq-fix.url = "github:aktaboot/nixpkgs/logseq-source";
+    nixpkgs-logseq.url = "github:nixos/nixpkgs/nixos-24.05";
   };
 
   outputs =
     inputs:
     let
       pkgs = import inputs.nixpkgs {
-        overlays = [ inputs.nuenv.overlays.default ];
+        overlays = [
+          inputs.nuenv.overlays.default
+          # https://github.com/NixOS/nixpkgs/issues/264531
+          (self: super: {
+            logseq = super.logseq.overrideAttrs (oldAttrs: {
+              postFixup = ''
+                makeWrapper ${super.electron_27}/bin/electron $out/bin/${oldAttrs.pname} \
+                  --add-flags $out/share/${oldAttrs.pname}/resources/app \
+                  --add-flags "--use-gl=desktop" \
+                  --prefix LD_LIBRARY_PATH : "${super.lib.makeLibraryPath [super.stdenv.cc.cc.lib]}"
+              '';
+            });
+          })
+        ];
         system = "x86_64-linux";
       };
       treefmt = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;

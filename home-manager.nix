@@ -86,7 +86,7 @@
     pkgs.firefox
 
     # Organisation
-    # pkgs.logseq
+    pkgs.logseq
     #((import inputs.nixpkgs-logseq-fix { system = "x86_64-linux"; }).logseq)
     #inputs.self.packages.x86_64-linux.logseq
     #((import inputs.nixpkgs-logseq {
