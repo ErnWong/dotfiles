@@ -86,15 +86,28 @@
     pkgs.firefox
 
     # Organisation
-    pkgs.logseq
+    #pkgs.logseq
     #((import inputs.nixpkgs-logseq-fix { system = "x86_64-linux"; }).logseq)
     #inputs.self.packages.x86_64-linux.logseq
-    #((import inputs.nixpkgs-logseq {
-    #  system = "x86_64-linux";
-    #  config.permittedInsecurePackages = [
-    #    "electron-27.3.11"
-    #  ];
-    #}).logseq)
+    ((import inputs.nixpkgs-logseq {
+      system = "x86_64-linux";
+      config.permittedInsecurePackages = [
+        "electron-27.3.11"
+      ];
+      overlays = [
+        # https://github.com/NixOS/nixpkgs/issues/264531
+        (self: super: {
+          logseq = super.logseq.overrideAttrs (oldAttrs: {
+            postFixup = ''
+              makeWrapper ${super.electron_27}/bin/electron $out/bin/${oldAttrs.pname} \
+                --add-flags $out/share/${oldAttrs.pname}/resources/app \
+                --add-flags "--use-gl=desktop" \
+                --prefix LD_LIBRARY_PATH : "${super.lib.makeLibraryPath [super.stdenv.cc.cc.lib]}"
+            '';
+          });
+        })
+      ];
+    }).logseq)
     pkgs.silverbullet
 
     # Dev

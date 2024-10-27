@@ -38,17 +38,6 @@
       pkgs = import inputs.nixpkgs {
         overlays = [
           inputs.nuenv.overlays.default
-          # https://github.com/NixOS/nixpkgs/issues/264531
-          (self: super: {
-            logseq = super.logseq.overrideAttrs (oldAttrs: {
-              postFixup = ''
-                makeWrapper ${super.electron_27}/bin/electron $out/bin/${oldAttrs.pname} \
-                  --add-flags $out/share/${oldAttrs.pname}/resources/app \
-                  --add-flags "--use-gl=desktop" \
-                  --prefix LD_LIBRARY_PATH : "${super.lib.makeLibraryPath [super.stdenv.cc.cc.lib]}"
-              '';
-            });
-          })
         ];
         system = "x86_64-linux";
       };
