@@ -21,7 +21,6 @@
     pkgs.dosfstools
     pkgs.fd
     pkgs.file
-    pkgs.git
     pkgs.gnupg
     pkgs.gptfdisk
     pkgs.iputils
@@ -151,6 +150,11 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+  };
 
   programs.gnupg.agent.enable = true;
 
