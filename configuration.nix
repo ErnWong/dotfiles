@@ -64,7 +64,7 @@
       pkgs.dejavu_fonts
       pkgs.google-fonts
       pkgs.noto-fonts
-      pkgs.noto-fonts-cjk
+      pkgs.noto-fonts-cjk-sans
       pkgs.noto-fonts-emoji
       pkgs.liberation_ttf
       pkgs.ubuntu_font_family
