@@ -32,6 +32,7 @@
         "pano@elhan.io"
         "Vitals@CoreCoding.com"
         "caffeine@patapon.info"
+        "color-picker@tuberry"
       ];
     };
     "org/gnome/desktop/interface" = {
@@ -135,6 +136,7 @@
     pkgs.gnomeExtensions.pano
     pkgs.gnomeExtensions.vitals
     pkgs.gnomeExtensions.caffeine
+    pkgs.gnomeExtensions.color-picker
   ];
 
   home.enableDebugInfo = true;
