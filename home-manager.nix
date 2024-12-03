@@ -114,7 +114,7 @@
     # Dev
     pkgs.gdb
     pkgs.gh
-    pkgs.gitbutler
+    #pkgs.gitbutler TODO not used yet and not building successfully
     pkgs.rlwrap
     pkgs.samba
     pkgs.starship
