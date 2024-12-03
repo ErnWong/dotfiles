@@ -232,6 +232,12 @@
           version = "0.0.9";
           sha256 = "sha256-KD8B8SwQR1pr/hM3dIfuNNCXz+ENb+UDnvq7Z9yxFhQ=";
         }
+        {
+          name = "uiua-vscode";
+          publisher = "uiua-lang";
+          version = "0.0.57";
+          sha256 = "sha256-KIbLwn/V47qmvpHx1Vorb5FdjI4lwh1pEQSgo0EEXcI=";
+        }
       ];
     userSettings = {
       "nix.enableLanguageServer" = true;
