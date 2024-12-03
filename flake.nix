@@ -30,6 +30,8 @@
     # TODO https://github.com/logseq/logseq/issues/10851 https://github.com/NixOS/nixpkgs/pull/347293 https://github.com/NixOS/nixpkgs/issues/341683
     nixpkgs-logseq-fix.url = "github:aktaboot/nixpkgs/logseq-source";
     nixpkgs-logseq.url = "github:nixos/nixpkgs/nixos-24.05";
+
+    nixpkgs-factorio1.url = "github:nixos/nixpkgs/nixos-24.05";
   };
 
   outputs =

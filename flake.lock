@@ -113,6 +113,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-factorio1": {
+      "locked": {
+        "lastModified": 1732749044,
+        "narHash": "sha256-T38FQOg0BV5M8FN1712fovzNakSOENEYs+CSkg31C9Y=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "0c5b4ecbed5b155b705336aa96d878e55acd8685",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-logseq": {
       "locked": {
         "lastModified": 1731797254,
@@ -214,6 +230,7 @@
         "musnix": "musnix",
         "nixos-cosmic": "nixos-cosmic",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-factorio1": "nixpkgs-factorio1",
         "nixpkgs-logseq": "nixpkgs-logseq",
         "nixpkgs-logseq-fix": "nixpkgs-logseq-fix",
         "nixpkgs-older-nushell": "nixpkgs-older-nushell",

@@ -124,7 +124,25 @@
 
     # Games
     pkgs.runelite
-    pkgs.factorio-headless
+    #(pkgs.writeShellScriptBin "factorio-seablock" ''
+    #  ${((import inputs.nixpkgs-factorio1 {
+    #    system = "x86_64-linux";
+    #    config.allowUnfree = true;
+    #  }).factorio.override {
+    #    username = "";
+    #    token = "";
+    #  })}/bin/factorio --verbose --config=$HOME/.factorio-seablock/config/config.ini --mod-directory=$HOME/.factorio-seablock/mods
+    #'')
+    #(pkgs.writeShellScriptBin "factorio-1" ''
+    #  ${((import inputs.nixpkgs-factorio1 {
+    #    system = "x86_64-linux";
+    #    config.allowUnfree = true;
+    #  }).factorio.override {
+    #    username = "";
+    #    token = "";
+    #  })}/bin/factorio --verbose --config=$HOME/.factorio-1/config/config.ini --mod-directory=$HOME/.factorio-1/mods
+    #'')
+    #pkgs.factorio-headless
     inputs.self.packages.x86_64-linux.openrct2-develop
 
     # Utils
