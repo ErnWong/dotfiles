@@ -256,6 +256,18 @@
           version = "0.0.57";
           sha256 = "sha256-KIbLwn/V47qmvpHx1Vorb5FdjI4lwh1pEQSgo0EEXcI=";
         }
+        {
+          name = "riscv";
+          publisher = "zhwu95";
+          version = "0.0.8";
+          sha256 = "sha256-PXaHSEXoN0ZboHIoDg37tZ+Gv6xFXP4wGBS3YS/53TY=";
+        }
+        {
+          name = "new-vsc-prolog";
+          publisher = "AmauryRabouan";
+          version = "1.1.12";
+          sha256 = "sha256-DXNHbjoBHTcLumRtAUHnohlpdSwT6uxvHhg+epSyYHI=";
+        }
       ];
     userSettings = {
       "nix.enableLanguageServer" = true;
