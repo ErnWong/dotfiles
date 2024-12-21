@@ -185,6 +185,7 @@
   #services.displayManager.cosmic-greeter.enable = true;
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.debug = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   environment.sessionVariables.GSK_RENDERER = "ngl"; # Temporary workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/6890, https://github.com/ErnWong/dotfiles/issues/44
