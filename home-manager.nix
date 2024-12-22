@@ -1,3 +1,4 @@
+username:
 {
   pkgs,
   lib,
@@ -40,8 +41,8 @@
     };
   };
 
-  home.username = "ernwong";
-  home.homeDirectory = "/home/ernwong";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 
   home.sessionVariables = {
     # Replace bold/underline with colors when using man

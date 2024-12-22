@@ -89,7 +89,8 @@
       inherit inputs;
     };
     users = {
-      ernwong = import ./home-manager.nix;
+      ernwong = import ./home-manager.nix "ernwong";
+      guest = import ./home-manager.nix "guest";
     };
   };
 
@@ -219,6 +220,11 @@
       isNormalUser = true;
       extraGroups = [ "wheel" "wireshark" ];
       shell = pkgs.nushell;
+    };
+    guest = {
+      initialPassword = "pleasechangeyourpassword";
+      extraGroups = [ "wheel" ];
+      isNormalUser = true;
     };
   };
 }
