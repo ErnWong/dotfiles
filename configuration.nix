@@ -170,6 +170,11 @@
     enable = true;
   };
 
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
+
   services.printing.enable = true;
   services.avahi = {
     enable = true;
@@ -212,7 +217,7 @@
     ernwong = {
       initialPassword = "pleasechangeyourpassword";
       isNormalUser = true;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "wireshark" ];
       shell = pkgs.nushell;
     };
   };
