@@ -180,7 +180,12 @@
   services.avahi = {
     enable = true;
     nssmdns4 = true;
+    nssmdns6 = true;
     openFirewall = true;
+    publish.enable = true;
+    publish.domain = true;
+    publish.addresses = true;
+    publish.workstation = true;
   };
 
   services.openssh = {
@@ -197,6 +202,11 @@
 
   environment.sessionVariables.GSK_RENDERER = "ngl"; # Temporary workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/6890, https://github.com/ErnWong/dotfiles/issues/44
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  services.gnome.gnome-remote-desktop.enable = true;
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+  services.xrdp.openFirewall = true;
 
   services.earlyoom.enable = true;
 
