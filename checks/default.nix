@@ -37,12 +37,10 @@ in
         if (open --raw ${machine-readable-output."${name}"} | is-empty) {
           echo 'Checks passed'
         } else {
-          ${
-            nuhelper.mkScript {
-              name = "check-${name}-script";
-              script = checker.human-readable;
-            }
-          }
+          ${nuhelper.mkScript {
+            name = "check-${name}-script";
+            script = checker.human-readable;
+          }}
         }
         touch $env.out
       '';

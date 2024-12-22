@@ -231,7 +231,10 @@
     ernwong = {
       initialPassword = "pleasechangeyourpassword";
       isNormalUser = true;
-      extraGroups = [ "wheel" "wireshark" ];
+      extraGroups = [
+        "wheel"
+        "wireshark"
+      ];
       shell = pkgs.nushell;
     };
     guest = {
