@@ -111,7 +111,10 @@
     settings = {
       auto-optimise-store = true;
       sandbox = true;
-      allowed-users = [ "@wheel" ];
+      allowed-users = [
+        "@wheel"
+        "guest" # Needed to set up home manager
+      ];
       trusted-users = [
         "root"
         "@wheel"
@@ -233,7 +236,6 @@
     };
     guest = {
       initialPassword = "pleasechangeyourpassword";
-      extraGroups = [ "wheel" ];
       isNormalUser = true;
     };
   };
