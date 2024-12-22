@@ -100,6 +100,7 @@
   #};
 
   networking.networkmanager.enable = true;
+  networking.nftables.enable = true; # Prefer using declarative firewall to avoid confusing states.
 
   nix = {
     gc.automatic = true;
