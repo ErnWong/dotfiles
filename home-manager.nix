@@ -270,6 +270,12 @@ username:
           version = "1.1.12";
           sha256 = "sha256-DXNHbjoBHTcLumRtAUHnohlpdSwT6uxvHhg+epSyYHI=";
         }
+        {
+          name = "language-ats";
+          publisher = "ldeleris";
+          version = "0.0.2";
+          sha256 = "sha256-HdUV20P3Nqf+2+M2GUCXjnKqn5IWWuqhgByBzCnMkow=";
+        }
       ];
     userSettings = {
       "nix.enableLanguageServer" = true;
