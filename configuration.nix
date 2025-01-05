@@ -213,6 +213,12 @@
   services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
   services.xrdp.openFirewall = true;
 
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+    user = "ernwong";
+  };
+
   services.earlyoom.enable = true;
 
   security.rtkit.enable = true; # Allows pipewire ask for realtime priority.
