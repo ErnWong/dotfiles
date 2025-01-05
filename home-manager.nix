@@ -152,6 +152,15 @@ username:
     pkgs.bitwarden
     pkgs.rclone
     pkgs.numbat # Alternative to Google search's unit-aware calculator
+    pkgs.qbittorrent
+    ((import inputs.nixpkgs {
+      system = "x86_64-linux";
+      config.permittedInsecurePackages = [
+        "dotnet-sdk-6.0.428"
+        "aspnetcore-runtime-6.0.36"
+      ];
+    }).sonarr
+    )
 
     # Gnome extensions
     pkgs.gnomeExtensions.pano
