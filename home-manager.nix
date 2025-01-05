@@ -34,6 +34,7 @@ username:
         "Vitals@CoreCoding.com"
         "caffeine@patapon.info"
         "color-picker@tuberry"
+        "improvmx.checker@ernestwong.nz"
       ];
     };
     "org/gnome/desktop/interface" = {
