@@ -7,6 +7,8 @@
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
+  boot.binfmt.emulatedSystems = [ "armv6l-linux" ];
+
   environment.systemPackages = [
     pkgs.ark
     pkgs.binutils
