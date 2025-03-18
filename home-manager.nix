@@ -146,7 +146,7 @@ username:
     #  })}/bin/factorio --verbose --config=$HOME/.factorio-1/config/config.ini --mod-directory=$HOME/.factorio-1/mods
     #'')
     #pkgs.factorio-headless
-    inputs.self.packages.x86_64-linux.openrct2-develop
+    #inputs.self.packages.x86_64-linux.openrct2-develop
 
     # Utils
     pkgs.bitwarden
