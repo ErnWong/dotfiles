@@ -227,71 +227,73 @@ username:
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions =
-      with pkgs.vscode-extensions;
-      [
-        vscodevim.vim
-        rust-lang.rust-analyzer
-        ms-vscode.cpptools
-        arrterian.nix-env-selector
-        jnoortheen.nix-ide
-        thenuprojectcontributors.vscode-nushell-lang
-      ]
-      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "prusti-assistant";
-          publisher = "viper-admin";
-          version = "0.9.0";
-          sha256 = "sha256-6Vcz4EPirN+d4VjzMky7BSHvqMdkf6GqwPiHuPNyaIU=";
-        }
-        {
-          name = "idris2-lsp";
-          publisher = "bamboo";
-          version = "0.7.0";
-          sha256 = "sha256-8eLvHKUPBoge50wzOfp5aK/XVJElVzKtil8Yj+PwNUU=";
-        }
-        {
-          name = "vscode-apl-language";
-          publisher = "OptimaSystems";
-          version = "0.0.7";
-          sha256 = "sha256-KkKuF/tPmMDeCpFOw1O4UyfliG8co3o9J3FNvc8wdgA=";
-        }
-        {
-          name = "vscode-apl-language-client";
-          publisher = "OptimaSystems";
-          version = "0.0.9";
-          sha256 = "sha256-KD8B8SwQR1pr/hM3dIfuNNCXz+ENb+UDnvq7Z9yxFhQ=";
-        }
-        {
-          name = "uiua-vscode";
-          publisher = "uiua-lang";
-          version = "0.0.57";
-          sha256 = "sha256-KIbLwn/V47qmvpHx1Vorb5FdjI4lwh1pEQSgo0EEXcI=";
-        }
-        {
-          name = "riscv";
-          publisher = "zhwu95";
-          version = "0.0.8";
-          sha256 = "sha256-PXaHSEXoN0ZboHIoDg37tZ+Gv6xFXP4wGBS3YS/53TY=";
-        }
-        {
-          name = "new-vsc-prolog";
-          publisher = "AmauryRabouan";
-          version = "1.1.12";
-          sha256 = "sha256-DXNHbjoBHTcLumRtAUHnohlpdSwT6uxvHhg+epSyYHI=";
-        }
-        {
-          name = "language-ats";
-          publisher = "ldeleris";
-          version = "0.0.2";
-          sha256 = "sha256-HdUV20P3Nqf+2+M2GUCXjnKqn5IWWuqhgByBzCnMkow=";
-        }
-      ];
-    userSettings = {
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.nil}/bin/nil";
-      "editor.fontFamily" = "'0xProto', 'Droid Sans Mono', 'monospace', monospace";
-      "editor.fontLigatures" = true;
+    profiles.default = {
+      extensions =
+        with pkgs.vscode-extensions;
+        [
+          vscodevim.vim
+          rust-lang.rust-analyzer
+          ms-vscode.cpptools
+          arrterian.nix-env-selector
+          jnoortheen.nix-ide
+          thenuprojectcontributors.vscode-nushell-lang
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "prusti-assistant";
+            publisher = "viper-admin";
+            version = "0.9.0";
+            sha256 = "sha256-6Vcz4EPirN+d4VjzMky7BSHvqMdkf6GqwPiHuPNyaIU=";
+          }
+          {
+            name = "idris2-lsp";
+            publisher = "bamboo";
+            version = "0.7.0";
+            sha256 = "sha256-8eLvHKUPBoge50wzOfp5aK/XVJElVzKtil8Yj+PwNUU=";
+          }
+          {
+            name = "vscode-apl-language";
+            publisher = "OptimaSystems";
+            version = "0.0.7";
+            sha256 = "sha256-KkKuF/tPmMDeCpFOw1O4UyfliG8co3o9J3FNvc8wdgA=";
+          }
+          {
+            name = "vscode-apl-language-client";
+            publisher = "OptimaSystems";
+            version = "0.0.9";
+            sha256 = "sha256-KD8B8SwQR1pr/hM3dIfuNNCXz+ENb+UDnvq7Z9yxFhQ=";
+          }
+          {
+            name = "uiua-vscode";
+            publisher = "uiua-lang";
+            version = "0.0.57";
+            sha256 = "sha256-KIbLwn/V47qmvpHx1Vorb5FdjI4lwh1pEQSgo0EEXcI=";
+          }
+          {
+            name = "riscv";
+            publisher = "zhwu95";
+            version = "0.0.8";
+            sha256 = "sha256-PXaHSEXoN0ZboHIoDg37tZ+Gv6xFXP4wGBS3YS/53TY=";
+          }
+          {
+            name = "new-vsc-prolog";
+            publisher = "AmauryRabouan";
+            version = "1.1.12";
+            sha256 = "sha256-DXNHbjoBHTcLumRtAUHnohlpdSwT6uxvHhg+epSyYHI=";
+          }
+          {
+            name = "language-ats";
+            publisher = "ldeleris";
+            version = "0.0.2";
+            sha256 = "sha256-HdUV20P3Nqf+2+M2GUCXjnKqn5IWWuqhgByBzCnMkow=";
+          }
+        ];
+      userSettings = {
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "${pkgs.nil}/bin/nil";
+        "editor.fontFamily" = "'0xProto', 'Droid Sans Mono', 'monospace', monospace";
+        "editor.fontLigatures" = true;
+      };
     };
   };
 

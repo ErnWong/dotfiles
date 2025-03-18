@@ -10,7 +10,7 @@
   boot.binfmt.emulatedSystems = [ "armv6l-linux" ];
 
   environment.systemPackages = [
-    pkgs.ark
+    pkgs.kdePackages.ark
     pkgs.binutils
     pkgs.btop
     pkgs.coreutils
