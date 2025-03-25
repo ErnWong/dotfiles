@@ -63,6 +63,7 @@ username:
     pkgs.lsp-plugins
     pkgs.mamba
     pkgs.musescore
+    pkgs.muse-sounds-manager
     pkgs.puredata
     pkgs.setbfree
     pkgs.sfizz
