@@ -15,9 +15,13 @@ jobs:
       - uses: cachix/install-nix-action@v26
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: DeterminateSystems/update-flake-lock@v21
+      - uses: DeterminateSystems/update-flake-lock@v24
+        id: update-flake-lock
         with:
           pr-title: "Update flake.lock"
           pr-labels: |
             dependencies
             automated
+      - uses: mdarocha/comment-flake-lock-changelog@v0.9.2
+        with:
+          pull-request-number: ${{ steps.update-flake-lock.outputs.pull-request-number }}
