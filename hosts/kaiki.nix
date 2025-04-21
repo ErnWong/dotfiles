@@ -14,7 +14,12 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Note: Put EFI System Partition within /boot rather than be /boot,
+  # so we don't need to put kernel inside the partition and run into
+  # out-of-space issues. See #43
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -32,6 +37,9 @@
     fsType = "btrfs";
   };
 
+  # Note: Put EFI System Partition within /boot rather than be /boot,
+  # so we don't need to put kernel inside the partition and run into
+  # out-of-space issues.
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
