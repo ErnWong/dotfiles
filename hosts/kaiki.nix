@@ -14,6 +14,7 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -31,7 +32,7 @@
     fsType = "btrfs";
   };
 
-  fileSystems."/boot" = {
+  fileSystems."/boot/efi" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
     options = [
