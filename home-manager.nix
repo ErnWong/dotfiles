@@ -84,6 +84,9 @@ username:
     # Video/streaming
     pkgs.davinci-resolve
     pkgs.obs-studio
+    (pkgs.shotcut.overrideAttrs (oldAttrs: {
+      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.wrapGAppsHook];
+    }))
 
     # Comms
     pkgs.discord
