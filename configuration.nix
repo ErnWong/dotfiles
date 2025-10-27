@@ -19,6 +19,7 @@
     pkgs.ddrescue
     pkgs.ddrescueview
     pkgs.direnv
+    pkgs.distrobox
     pkgs.dnsutils
     pkgs.dosfstools
     pkgs.fd
