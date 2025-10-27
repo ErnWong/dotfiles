@@ -7,7 +7,7 @@
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-  boot.binfmt.emulatedSystems = [ "armv6l-linux" ];
+  boot.binfmt.emulatedSystems = [ "armv6l-linux" "i686-linux" ];
 
   environment.systemPackages = [
     pkgs.kdePackages.ark
