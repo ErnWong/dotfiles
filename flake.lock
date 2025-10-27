@@ -21,6 +21,24 @@
         "systems": "systems"
       },
       "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
         "lastModified": 1681202837,
         "narHash": "sha256-H+Rh19JDwRtpVPAWp64F+rlEtxUWBAQW28eAi3SRSzg=",
         "owner": "numtide",
@@ -51,6 +69,27 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "icantbelievegit": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1761541345,
+        "narHash": "sha256-qEVpaKsDGXcWCAJeQOLZMi2Yo1hNOxLQJo4KOwuaQlQ=",
+        "owner": "ErnWong",
+        "repo": "i-cant-believe-gits-not-a-file",
+        "rev": "c23fadd86da8268efe6ca6610c7c179312a6f87f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ErnWong",
+        "repo": "i-cant-believe-gits-not-a-file",
         "type": "github"
       }
     },
@@ -227,6 +266,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "icantbelievegit": "icantbelievegit",
         "musnix": "musnix",
         "nixos-cosmic": "nixos-cosmic",
         "nixpkgs": "nixpkgs",
@@ -261,7 +301,7 @@
     },
     "rust-overlay_2": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nuenv",
           "nixpkgs"
@@ -282,6 +322,21 @@
       }
     },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
