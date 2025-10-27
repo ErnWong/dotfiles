@@ -241,6 +241,7 @@ username:
           arrterian.nix-env-selector
           jnoortheen.nix-ide
           thenuprojectcontributors.vscode-nushell-lang
+          inputs.icantbelievegit.packages.x86_64-linux.default
         ]
         ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
