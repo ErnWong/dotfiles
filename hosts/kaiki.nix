@@ -67,7 +67,6 @@
     rocmPackages.clr.icd
     rocmPackages.clr
     rocmPackages.rocm-runtime
-    amdvlk
   ];
   hardware.graphics = {
     enable = true;
