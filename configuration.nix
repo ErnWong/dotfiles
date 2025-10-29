@@ -103,6 +103,10 @@
   #  kernel.realtime = true;
   #};
 
+  # Seeing if this resolves some wifi issues I'm getting with
+  # kernel 6.12.55 LTS - see #25
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.networkmanager.enable = true;
   networking.nftables.enable = true; # Prefer using declarative firewall to avoid confusing states.
 
