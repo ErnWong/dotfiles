@@ -153,7 +153,7 @@ username:
     #inputs.self.packages.x86_64-linux.openrct2-develop
 
     # Utils
-    pkgs.bitwarden
+    pkgs.bitwarden-desktop
     pkgs.rclone
     pkgs.numbat # Alternative to Google search's unit-aware calculator
     pkgs.qbittorrent
