@@ -83,6 +83,10 @@ username:
     pkgs.inkscape
     pkgs.darktable
 
+    # Documents
+    pkgs.libreoffice
+    pkgs.onlyoffice-desktopeditors
+
     # Video/streaming
     pkgs.davinci-resolve
     pkgs.obs-studio
