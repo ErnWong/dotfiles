@@ -90,9 +90,10 @@ username:
     # Video/streaming
     pkgs.davinci-resolve
     pkgs.obs-studio
-    (pkgs.shotcut.overrideAttrs (oldAttrs: {
-      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.wrapGAppsHook];
-    }))
+    # note wrapGAppsHook renamed to wrapGAppsHook3 and 4, but we're disabling shotcut for now as not using it due to still image black bug.
+    # (pkgs.shotcut.overrideAttrs (oldAttrs: {
+    #   nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.wrapGAppsHook];
+    # }))
     pkgs.footage
 
     # Comms
@@ -337,7 +338,7 @@ username:
       #yajs-vim
       #vim-sass-lint
       #rust-vim
-      rust-tools-nvim
+      rustaceanvim # rust-tools-nvim - abandoned
       yats-vim
       ats-vim
       vim-nix
