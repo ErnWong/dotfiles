@@ -93,6 +93,8 @@ username:
     (pkgs.shotcut.overrideAttrs (oldAttrs: {
       nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.wrapGAppsHook];
     }))
+    pkgs.footage
+    pkgs.peek
 
     # Comms
     pkgs.discord
