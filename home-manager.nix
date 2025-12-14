@@ -78,9 +78,10 @@ username:
     pkgs.soundfont-generaluser
     pkgs.soundfont-ydp-grand
 
-    # Art
+    # Art / photography
     pkgs.krita
     pkgs.inkscape
+    pkgs.darktable
 
     # Video/streaming
     pkgs.davinci-resolve
