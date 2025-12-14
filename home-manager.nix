@@ -330,7 +330,7 @@ username:
       #yajs-vim
       #vim-sass-lint
       #rust-vim
-      rust-tools-nvim
+      rustaceanvim # rust-tools-nvim - abandoned
       yats-vim
       ats-vim
       vim-nix
