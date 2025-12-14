@@ -57,6 +57,7 @@ username:
     pkgs.aeolus
     pkgs.ardour
     pkgs.audacity
+    pkgs.bespokesynth
     pkgs.calf
     pkgs.carla
     pkgs.lilypond
