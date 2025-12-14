@@ -57,6 +57,7 @@ username:
     pkgs.aeolus
     pkgs.ardour
     pkgs.audacity
+    pkgs.bespokesynth
     pkgs.calf
     pkgs.carla
     pkgs.lilypond
@@ -77,9 +78,14 @@ username:
     pkgs.soundfont-generaluser
     pkgs.soundfont-ydp-grand
 
-    # Art
+    # Art / photography
     pkgs.krita
     pkgs.inkscape
+    pkgs.darktable
+
+    # Documents
+    pkgs.libreoffice
+    pkgs.onlyoffice-desktopeditors
 
     # Video/streaming
     pkgs.davinci-resolve
@@ -88,6 +94,7 @@ username:
     # (pkgs.shotcut.overrideAttrs (oldAttrs: {
     #   nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.wrapGAppsHook];
     # }))
+    pkgs.footage
 
     # Comms
     pkgs.discord

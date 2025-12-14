@@ -186,7 +186,10 @@
     package = pkgs.wireshark;
   };
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    logLevel = "debug";
+  };
   services.avahi = {
     enable = true;
     nssmdns4 = true;
