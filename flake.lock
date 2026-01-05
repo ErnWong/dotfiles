@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767437240,
-        "narHash": "sha256-OA0dBHhccdupFXp+/eaFfb8K1dQxk61in4aF5ITGVX8=",
+        "lastModified": 1767556355,
+        "narHash": "sha256-RDTUBDQBi9D4eD9iJQWtUDN/13MDLX+KmE+TwwNUp2s=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1cfa305fba94468f665de1bd1b62dddf2e0cb012",
+        "rev": "f894bc4ffde179d178d8deb374fcf9855d1a82b7",
         "type": "github"
       },
       "original": {
@@ -80,11 +80,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761628660,
-        "narHash": "sha256-QCzHAr+YoiRbnNi2yEeMNqcpLoDpyKqVFoj9Fmhiet4=",
+        "lastModified": 1767578392,
+        "narHash": "sha256-as9m6eXsz9Fa43HiivRlzNbDcEthXgRsFI/a8V4Bvu4=",
         "owner": "ErnWong",
         "repo": "i-cant-believe-gits-not-a-file",
-        "rev": "94534b2ddfcefc944f49f30b52cb4db3ad7cc50f",
+        "rev": "8d462abcbfb4cb4264865040d600aa026dbde4cf",
         "type": "github"
       },
       "original": {
