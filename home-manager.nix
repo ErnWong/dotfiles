@@ -225,7 +225,7 @@ username:
   programs.git = {
     enable = true;
 
-    extraConfig = {
+    settings = {
       pull.rebase = false;
       credential."https://github.com".helper = "!gh auth git-credential";
     };
@@ -233,7 +233,7 @@ username:
 
   programs.less = {
     enable = true;
-    keys = builtins.readFile ./lesskey;
+    config = builtins.readFile ./lesskey;
   };
 
   # Java needed for prusti vscode extension

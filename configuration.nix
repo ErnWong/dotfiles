@@ -41,7 +41,7 @@
     pkgs.tealdeer
     pkgs.unzip
     pkgs.usbutils
-    pkgs.utillinux
+    pkgs.util-linux
     pkgs.whois
     pkgs.zip
   ];
@@ -209,9 +209,9 @@
   #services.desktopManager.cosmic.enable = true;
   #services.displayManager.cosmic-greeter.enable = true;
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.debug = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.debug = true;
+  services.desktopManager.gnome.enable = true;
 
   environment.sessionVariables.GSK_RENDERER = "ngl"; # Temporary workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/6890, https://github.com/ErnWong/dotfiles/issues/44
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -230,7 +230,7 @@
   services.earlyoom.enable = true;
 
   security.rtkit.enable = true; # Allows pipewire ask for realtime priority.
-  hardware.pulseaudio.enable = false; # Conflicts with pipewire.
+  services.pulseaudio.enable = false; # Conflicts with pipewire.
   services.pipewire = {
     enable = true;
     alsa.enable = true;
