@@ -95,6 +95,8 @@ username:
     #   nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.wrapGAppsHook];
     # }))
     pkgs.footage
+    pkgs.mpv
+    pkgs.vlc
 
     # Comms
     pkgs.discord
