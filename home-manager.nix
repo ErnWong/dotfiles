@@ -89,6 +89,7 @@ username:
 
     # Video/streaming
     pkgs.davinci-resolve
+    pkgs.kdePackages.kdenlive
     pkgs.obs-studio
     # note wrapGAppsHook renamed to wrapGAppsHook3 and 4, but we're disabling shotcut for now as not using it due to still image black bug.
     # (pkgs.shotcut.overrideAttrs (oldAttrs: {
