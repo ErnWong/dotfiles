@@ -168,7 +168,7 @@ username:
     pkgs.rclone
     pkgs.numbat # Alternative to Google search's unit-aware calculator
     pkgs.qbittorrent
-    ((import inputs.nixpkgs {
+    ((import inputs.nixpkgs-stable {
       system = "x86_64-linux";
       config.permittedInsecurePackages = [
         "dotnet-sdk-6.0.428"

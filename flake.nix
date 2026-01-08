@@ -2,29 +2,30 @@
   description = "Ernest's nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/master";
+    #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     musnix = {
       url = "github:musnix/musnix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     icantbelievegit = {
       url = "github:ErnWong/i-cant-believe-gits-not-a-file";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     # Newer nushell breaks nuenv, and has some weird stdout/stderr+exit handling that I
@@ -42,7 +43,7 @@
   outputs =
     inputs:
     let
-      pkgs = import inputs.nixpkgs {
+      pkgs = import inputs.nixpkgs-stable {
         overlays = [
           inputs.nuenv.overlays.default
         ];
@@ -77,7 +78,7 @@
       packages.x86_64-linux = import ./pkgs pkgs;
 
       nixosConfigurations = {
-        yoroizuka = inputs.nixpkgs.lib.nixosSystem {
+        yoroizuka = inputs.nixpkgs-stable.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
           };
@@ -88,7 +89,7 @@
             ./hosts/yoroizuka.nix
           ];
         };
-        kaiki = inputs.nixpkgs.lib.nixosSystem {
+        kaiki = inputs.nixpkgs-stable.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
           };
