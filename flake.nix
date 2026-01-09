@@ -78,15 +78,6 @@
       packages.x86_64-linux = import ./pkgs pkgs;
 
       nixosConfigurations = {
-        installerIsoWithUsbModeSwitch = inputs.nixpkgs-stable.lib.nixosSystem {
-          modules = [
-            ({ pkgs, modulesPath, ... }: {
-              imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-graphical-calamares-gnome.nix") ];
-              hardware.usb-modeswitch.enable = true; # Some USB WiFi adapters present themselves as installation cdroms at first, so enable auto modeswitch to fix WiFi.
-              nixpkgs.hostPlatform = "x86_64-linux";
-            })
-          ];
-        };
         yoroizuka = inputs.nixpkgs-stable.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
