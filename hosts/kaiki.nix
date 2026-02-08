@@ -61,39 +61,39 @@
   networking.hostName = "kaiki";
 
   # Internet Connection Sharing - share the wifi internet with ethernet.
-  networking.networkmanager.ensureProfiles.profiles = {
-    "Shared" = {
-      connection.type = "ethernet";
-      connection.id = "Shared Ethernet";
-      connection.interface-name = "eno1";
+  # networking.networkmanager.ensureProfiles.profiles = {
+  #   "Shared" = {
+  #     connection.type = "ethernet";
+  #     connection.id = "Shared Ethernet";
+  #     connection.interface-name = "eno1";
 
-      ipv4.method = "shared";
-      ipv4.addresses = "10.0.0.1/24";
-      ipv6.method = "shared";
-      ipv6.addresses = "fd00:5cff:fe1c:d4bc::1/64";
-    };
-  };
-  networking.firewall.allowedUDPPorts = [53 67];
-  networking.nftables.tables.myipv6nat = {
-    family = "ip6";
-    # Copied from what networkmanager is doing for ipv4
-    content = ''
-	chain nat_postrouting {
-		type nat hook postrouting priority srcnat; policy accept;
-		ip6 saddr fd00:5cff:fe1c:d4bc::1/64 ip6 daddr != fd00:5cff:fe1c:d4bc::1/64 masquerade
-	}
+  #     ipv4.method = "shared";
+  #     ipv4.addresses = "10.0.0.1/24";
+  #     ipv6.method = "shared";
+  #     ipv6.addresses = "fd00:5cff:fe1c:d4bc::1/64";
+  #   };
+  # };
+  # networking.firewall.allowedUDPPorts = [53 67];
+  # networking.nftables.tables.myipv6nat = {
+  #   family = "ip6";
+  #   # Copied from what networkmanager is doing for ipv4
+  #   content = ''
+	# chain nat_postrouting {
+	# 	type nat hook postrouting priority srcnat; policy accept;
+	# 	ip6 saddr fd00:5cff:fe1c:d4bc::1/64 ip6 daddr != fd00:5cff:fe1c:d4bc::1/64 masquerade
+	# }
 
-	chain filter_forward {
-		type filter hook forward priority filter; policy accept;
-		ip6 daddr fd00:5cff:fe1c:d4bc::1/64 oifname "eno1" ct state { established, related } accept
-		ip6 saddr fd00:5cff:fe1c:d4bc::1/64 iifname "eno1" accept
-		iifname "eno1" oifname "eno1" accept
-		iifname "eno1" reject
-		oifname "eno1" reject
-	}
+	# chain filter_forward {
+	# 	type filter hook forward priority filter; policy accept;
+	# 	ip6 daddr fd00:5cff:fe1c:d4bc::1/64 oifname "eno1" ct state { established, related } accept
+	# 	ip6 saddr fd00:5cff:fe1c:d4bc::1/64 iifname "eno1" accept
+	# 	iifname "eno1" oifname "eno1" accept
+	# 	iifname "eno1" reject
+	# 	oifname "eno1" reject
+	# }
 
-    '';
-  };
+  #   '';
+  # };
   #networking.nat = {
   #  enable = true;
   #  enableIPv6 = true;
