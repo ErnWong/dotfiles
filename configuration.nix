@@ -5,7 +5,10 @@
   ...
 }:
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
+  imports = [
+    inputs.vscode-server.nixosModules.default
+    inputs.home-manager.nixosModules.home-manager
+  ];
 
   boot.binfmt.emulatedSystems = [ "armv6l-linux" "i686-linux" ];
 
@@ -228,6 +231,9 @@
   };
 
   services.earlyoom.enable = true;
+
+  services.vscode-server.enable = true;
+  programs.nix-ld.enable = true; # Temporary for vscode server
 
   security.rtkit.enable = true; # Allows pipewire ask for realtime priority.
   services.pulseaudio.enable = false; # Conflicts with pipewire.
