@@ -28,6 +28,15 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
+
+    neominimap = {
+      url = "github:Isrothy/neominimap.nvim";
+      flake = false;
+    };
+
     # Newer nushell breaks nuenv, and has some weird stdout/stderr+exit handling that I
     # haven't figured out yet, so we're using an older version of nushell.
     nixpkgs-older-nushell.url = "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.555097%2Brev-91050ea1e57e50388fa87a3302ba12d188ef723a/018c3450-2363-7c34-883b-4ba70b1eb7ae/source.tar.gz"; # Provides Nushell v0.87.1

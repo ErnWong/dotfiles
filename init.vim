@@ -106,20 +106,14 @@ set undofile
 
 
 set colorcolumn=100
+set number
 set numberwidth=4
 set cursorline
 set scrolloff=4
 set cmdheight=2
-
-" (From coc.nvim README)
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+set signcolumn=yes
+set listchars=tab:→\ ,trail:⋅
+set list
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -137,7 +131,7 @@ set noshowmode
 " Colorscheme
 let g:gruvbox_italic = 1
 let g:gruvbox_bold = 1
-colorscheme gruvbox
+" colorscheme gruvbox
 set background=dark
 set termguicolors
 " See if we still need this
@@ -152,10 +146,10 @@ syntax on
 " autocmd BufEnter * syntax sync fromstart
 
 " Airline
-let g:airline_theme='gruvbox'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = '│'
+" let g:airline_theme='gruvbox'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ''
+" let g:airline#extensions#tabline#left_alt_sep = '│'
 " if !exists('g:airline_symbols')
 "   let g:airline_symbols = {}
 " endif
@@ -176,10 +170,9 @@ let g:airline#extensions#tabline#left_alt_sep = '│'
 "
 
 
-lua << EOF
-  require('rust-tools').setup({})
-  require('lspconfig').nil_ls.setup {}
-EOF
+" lua << EOF
+"   require('lspconfig').nil_ls.setup {}
+" EOF
 
 " let g:syntastic_sass_checkers=["sasslint"]
 " let g:syntastic_scss_checkers=["sasslint"]
@@ -213,4 +206,4 @@ set updatetime=100
 
 " Mouse
 set mouse=a
-behave mswin
+"behave mswin

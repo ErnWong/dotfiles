@@ -7,6 +7,10 @@ username:
   ...
 }:
 {
+  imports = [
+    inputs.nixvim.homeModules.nixvim
+  ];
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
     (_final: prev: {
@@ -306,91 +310,240 @@ username:
         ];
       userSettings = {
         "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "${pkgs.nil}/bin/nil";
+        #"nix.serverPath" = "${pkgs.nil}/bin/nil";
+        "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
         "editor.fontFamily" = "'0xProto', 'Droid Sans Mono', 'monospace', monospace";
         "editor.fontLigatures" = true;
       };
     };
   };
 
-  programs.neovim = {
+  programs.nixvim = {
     enable = true;
-    extraConfig = builtins.readFile ./init.vim;
+
+    #colorschemes.gruvbox.enable = true;
+    #colorschemes.gruvbox.autoLoad = true;
+    #colorschemes.one.enable = true;
+    colorschemes.tokyonight = {
+      enable = true;
+      settings = {
+        dim_inactive = true;
+      };
+    };
+    #colorschemes.ayu.enable = true;
+
+    keymaps = [
+      {
+        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_definitions";
+        key = "gd";
+      }
+      {
+        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_references";
+        key = "gr";
+      }
+      {
+        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_implementations";
+        key = "gi";
+      }
+      {
+        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_document_symbols";
+        key = "gO";
+      }
+      {
+        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+        key = "gW";
+      }
+      {
+        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_type_definitions";
+        key = "gt";
+      }
+      {
+        key = "gD";
+        lspBufAction = "declaration";
+      }
+      {
+        key = "K";
+        lspBufAction = "hover";
+      }
+    ];
+
+    # Git
+    plugins.fugitive.enable = true;
+    plugins.rhubarb.enable = true;
+    #plugins.gitgutter.enable = true;
+    plugins.gitsigns = {
+      enable = true;
+      settings = {
+        current_line_blame = true;
+      };
+    };
+
+    # Debug
+    plugins.dap.enable = true;
+
+    # Languages
+    #plugins.idris2.enable = true;
+    #plugins.rustaceanvim.enable = true;
+    plugins.treesitter = {
+      enable = true;
+      highlight.enable = true;
+      indent.enable = true;
+      folding.enable = true;
+    };
+    plugins.otter.enable = true;
+    plugins.lsp = {
+      enable = true;
+      inlayHints = true;
+      servers = {
+        nixd.enable = true;
+        bashls.enable = true;
+        phpactor.enable = true;
+        rust_analyzer.enable = true;
+        jsonls.enable = true;
+        html.enable = true;
+        jqls.enable = true;
+        idris2_lsp.enable = true;
+        cmake.enable = true;
+        clangd.enable = true;
+      };
+    };
+    plugins.rainbow-delimiters.enable = true;
+    plugins.treesitter-context.enable = true;
+    plugins.lspsaga.enable = true;
+    plugins.lsp-signature.enable = true;
+    plugins.lspkind.enable = true;
+    plugins.cmp = {
+      enable = true;
+      autoEnableSources = true;
+      settings.sources = [
+        { name = "nvim_lsp"; }
+        { name = "path"; }
+        { name = "buffer"; }
+      ];
+    };
+    plugins.todo-comments.enable = true;
+
+    # UI
+    plugins.telescope = {
+      enable = true;
+      extensions = {
+        fzf-native.enable = true;
+      };
+
+      keymaps = {
+        "<leader>ff" = {
+          #action = "<cmd>Telescope find_files<cr>";
+          action = "find_files";
+          #mode = "n";
+        };
+        "<leader>fg" = {
+          #action = "<cmd>Telescope live_grep<cr>";
+          action = "live_grep";
+          #mode = "n";
+        };
+        "<leader>fb" = {
+          #action = "<cmd>Telescope buffers<cr>";
+          action = "buffers";
+          #mode = "n";
+        };
+        "<leader>fh" = {
+          #action = "<cmd>Telescope help_tags<cr>";
+          action = "help_tags";
+          #mode = "n";
+        };
+      };
+    };
+    plugins.web-devicons.enable = true;
+    # plugins.airline = {
+    #   enable = true;
+    #   # settings = {
+    #   #   theme = "gruvbox";
+    #   # };
+    # };
+    plugins.tiny-inline-diagnostic.enable = true;
+    plugins.which-key.enable = true;
+    plugins.lualine = {
+      enable = true;
+      settings = {
+        options = {
+          #component_separators = {
+          #  left = "";
+          #  right = "";
+          #};
+          section_separators = {
+            left = "";
+            right = "";
+          };
+        };
+      };
+    };
+
+    extraConfigVim = builtins.readFile ./init.vim;
+    extraConfigLua = ''
+      vim.g.neominimap = {
+        click = {
+          enabled = true,
+        },
+        layout = "split",
+      }
+
+      -- vim.api.nvim_create_autocmd('LspAttach', {
+      --   group = vim.api.nvim_create_augroup('telescope-lsp-attach', { clear = true }),
+      --   callback = function(event)
+      --     local buf = event.buf
+      --     local builtin = require 'telescope.builtin'
+      --     vim.keymap.set('n', 'grr', builtin.lsp_references, { buffer = buf, desc = '[G]oto [R]eferences' })
+      --     vim.keymap.set('n', 'gri', builtin.lsp_implementations, { buffer = buf, desc = '[G]oto [I]mplementation' })
+      --     vim.keymap.set('n', 'grd', builtin.lsp_definitions, { buffer = buf, desc = '[G]oto [D]efinition' })
+      --     vim.keymap.set('n', 'gO', builtin.lsp_document_symbols, { buffer = buf, desc = 'Open Document Symbols' })
+      --     vim.keymap.set('n', 'gW', builtin.lsp_dynamic_workspace_symbols, { buffer = buf, desc = 'Open Workspace Symbols' })
+      --     vim.keymap.set('n', 'grt', builtin.lsp_type_definitions, { buffer = buf, desc = '[G]oto [T]ype Definition' })
+      --   end,
+      -- })
+    '';
     extraPackages = with pkgs; [
       rust-analyzer
-      nil
+      #nil
+      nixd
     ];
-    plugins = with pkgs.vimPlugins; [
-      vim-sensible
-      neovim-sensible
-      nvim-dap
+    extraPlugins = with pkgs.vimPlugins; [
+    #  vim-sensible
+    #  neovim-sensible
 
-      # Intelligence
-      syntastic
-      editorconfig-vim
-      nvim-lspconfig
-      nvim-dap
+    #  # Intelligence
+    #  syntastic
+    #  editorconfig-vim
+    #  nvim-lspconfig
 
-      # Languages
-      vim-liquid
-      vim-ps1
-      vim-cpp-enhanced-highlight
-      vim-pandoc
-      vim-pandoc-syntax
-      markdown-preview-nvim
-      #yajs-vim
-      #vim-sass-lint
-      #rust-vim
-      rustaceanvim # rust-tools-nvim - abandoned
-      yats-vim
-      ats-vim
-      vim-nix
-      idris2-vim
-      nvim-treesitter # Required by nvim-nu
-      nvim-nu
+    #  # Languages
+    #  vim-liquid
+    #  vim-ps1
+    #  vim-cpp-enhanced-highlight
+    #  vim-pandoc
+    #  vim-pandoc-syntax
+    #  markdown-preview-nvim
+    #  yats-vim
+    #  ats-vim
+    #  vim-nix
+    #  nvim-nu
 
-      # Coc
-      #coc-marketplace
-      #coc-xml
-      #coc-json
-      #coc-yaml
-      #coc-toml
-      #coc-gitignore
-      #coc-rust-analyzer
-      #coc-java
-      #coc-tsserver
-      #coc-eslint
-      #coc-vimlsp
-      #coc-pyright
-      #coc-powershell
-      #coc-sh
-      #coc-sql
-      #coc-docker
-      #coc-vimtex
-      #coc-css
-      #coc-prettier
+    #  # Handy
+    #  vim-surround
+    #  vim-commentary
+    #  #fzf
+    #  fzf-vim
 
-      # Handy
-      vim-surround
-      vim-commentary
-      #fzf
-      fzf-vim
-
-      # UI
-      vim-airline
-      vim-airline-themes
+    #  # UI
+    # vim-airline
+    # vim-airline-themes
       vim-tmux-navigator
       vim-bufkill
-      ranger-vim
+    #  ranger-vim
       tagbar
-
-      # Git
-      vim-fugitive
-      vim-rhubarb
-      vim-gitgutter
-
-      # Colorschemes
-      gruvbox
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "neominimap.nvim";
+        src = inputs.neominimap;
+      })
     ];
     viAlias = true;
     vimAlias = true;
