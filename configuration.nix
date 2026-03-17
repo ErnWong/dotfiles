@@ -181,6 +181,9 @@
     enable = true;
   };
 
+  programs.tmux.enable = true;
+  programs.tmux.terminal = "tmux-direct";
+
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
