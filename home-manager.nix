@@ -334,27 +334,44 @@ username:
 
     keymaps = [
       {
-        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_definitions";
+        action = "<cmd>Neotree toggle<CR>";
+        key = "<leader>tt";
+        mode = [ "n" ];
+      }
+      {
+        action = "<cmd>Neotree reveal<CR>";
+        key = "<leader>tr";
+        mode = [ "n" ];
+      }
+      {
+        action = "<cmd>Neotree focus<CR>";
+        key = "<leader>tf";
+        mode = [ "n" ];
+      }
+    ];
+    lsp.keymaps = [
+      {
+        action = inputs.nixvim.lib.nixvim.mkRaw "require('telescope.builtin').lsp_definitions";
         key = "gd";
       }
       {
-        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_references";
+        action = inputs.nixvim.lib.nixvim.mkRaw "require('telescope.builtin').lsp_references";
         key = "gr";
       }
       {
-        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_implementations";
+        action = inputs.nixvim.lib.nixvim.mkRaw "require('telescope.builtin').lsp_implementations";
         key = "gi";
       }
       {
-        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_document_symbols";
+        action = inputs.nixvim.lib.nixvim.mkRaw "require('telescope.builtin').lsp_document_symbols";
         key = "gO";
       }
       {
-        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+        action = inputs.nixvim.lib.nixvim.mkRaw "require('telescope.builtin').lsp_dynamic_workspace_symbols";
         key = "gW";
       }
       {
-        action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_type_definitions";
+        action = inputs.nixvim.lib.nixvim.mkRaw "require('telescope.builtin').lsp_type_definitions";
         key = "gt";
       }
       {
@@ -390,7 +407,10 @@ username:
       indent.enable = true;
       folding.enable = true;
     };
-    plugins.otter.enable = true;
+    plugins.otter = {
+      enable = true;
+      autoActivate = false; # It breaks fugitive when it autoactivates otter in Gdiff buffers with "Buffer with this name already exists"
+    };
     plugins.lsp = {
       enable = true;
       inlayHints = true;
@@ -477,14 +497,22 @@ username:
         };
       };
     };
+    plugins.barbar.enable = true;
+    plugins.neo-tree = {
+      enable = true;
+      settings.close_if_last_window = true;
+    };
 
     extraConfigVim = builtins.readFile ./init.vim;
     extraConfigLua = ''
+      vim.opt.foldlevel = 99
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
       vim.g.neominimap = {
         click = {
           enabled = true,
         },
-        layout = "split",
+        --layout = "split",
       }
 
       -- vim.api.nvim_create_autocmd('LspAttach', {
@@ -500,6 +528,21 @@ username:
       --     vim.keymap.set('n', 'grt', builtin.lsp_type_definitions, { buffer = buf, desc = '[G]oto [T]ype Definition' })
       --   end,
       -- })
+
+      --vim.o.showtabline = 2;
+      --require('tabby').setup({ preset = 'active_wins_at_tail' });
+
+      vim.api.nvim_create_augroup('otter_lsp_on_attach', { clear = true })
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = "otter_lsp_on_attach",
+        desc = "Activate otter upon LSP attach",
+        callback = function(event)
+          -- Don't activate otter for fugitive virtual files as it errors out
+          if not vim.startswith(vim.fn.bufname(event.buf), 'fugitive://') then
+            require("otter").activate()
+          end
+        end,
+      })
     '';
     extraPackages = with pkgs; [
       rust-analyzer
@@ -538,7 +581,10 @@ username:
     # vim-airline-themes
       vim-tmux-navigator
       vim-bufkill
+    # tabby-nvim
     #  ranger-vim
+      satellite-nvim
+    # minimap-vim
       tagbar
       (pkgs.vimUtils.buildVimPlugin {
         name = "neominimap.nvim";
