@@ -225,6 +225,8 @@
   services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
   services.xrdp.openFirewall = true;
 
+  services.nixseparatedebuginfod2.enable = true;
+
   services.jellyfin = {
     enable = true;
     openFirewall = true;
