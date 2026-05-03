@@ -47,6 +47,8 @@
     nixpkgs-logseq.url = "github:nixos/nixpkgs/nixos-24.05";
 
     nixpkgs-factorio1.url = "github:nixos/nixpkgs/nixos-24.05";
+
+    nixpkgs-olive-editor.url = "github:nixos/nixpkgs/d09aec1b2769b6d64e590c0fa921cef2415529db";
   };
 
   outputs =

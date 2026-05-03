@@ -92,6 +92,18 @@ username:
     pkgs.onlyoffice-desktopeditors
 
     # Video/streaming
+    (import inputs.nixpkgs-olive-editor {
+      system = "x86_64-linux";
+      overlays = [
+        (self: super: {
+          olive-editor = super.olive-editor.overrideAttrs (oldAttrs: {
+            nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
+              self.wrapGAppsHook3
+            ];
+          });
+        })
+      ];
+    }).olive-editor
     pkgs.davinci-resolve
     pkgs.kdePackages.kdenlive
     pkgs.obs-studio

@@ -251,6 +251,22 @@
         "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.555097%2Brev-91050ea1e57e50388fa87a3302ba12d188ef723a/018c3450-2363-7c34-883b-4ba70b1eb7ae/source.tar.gz"
       }
     },
+    "nixpkgs-olive-editor": {
+      "locked": {
+        "lastModified": 1762117148,
+        "narHash": "sha256-LcED7So2VROZAxDuPZpMAGxe3qTh2/SFtlWywcsc8yo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d09aec1b2769b6d64e590c0fa921cef2415529db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d09aec1b2769b6d64e590c0fa921cef2415529db",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1751048012,
@@ -347,6 +363,7 @@
         "nixpkgs-logseq": "nixpkgs-logseq",
         "nixpkgs-logseq-fix": "nixpkgs-logseq-fix",
         "nixpkgs-older-nushell": "nixpkgs-older-nushell",
+        "nixpkgs-olive-editor": "nixpkgs-olive-editor",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nixvim": "nixvim",
         "nuenv": "nuenv",
