@@ -333,6 +333,8 @@ username:
   programs.nixvim = {
     enable = true;
 
+    nixpkgs.config.allowUnfree = true; # TODO barbar etc https://github.com/nix-community/nixvim/issues/2147
+
     #colorschemes.gruvbox.enable = true;
     #colorschemes.gruvbox.autoLoad = true;
     #colorschemes.one.enable = true;
