@@ -192,6 +192,7 @@ username:
       ];
     }).sonarr
     )
+    pkgs.mission-center
 
     # Gnome extensions
     pkgs.gnomeExtensions.pano
