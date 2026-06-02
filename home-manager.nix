@@ -158,29 +158,47 @@ username:
 
     # Games
     pkgs.runelite
-    #(pkgs.writeShellScriptBin "factorio-seablock" ''
-    #  ${((import inputs.nixpkgs-factorio1 {
-    #    system = "x86_64-linux";
-    #    config.allowUnfree = true;
-    #  }).factorio.override {
-    #    username = "";
-    #    token = "";
-    #  })}/bin/factorio --verbose --config=$HOME/.factorio-seablock/config/config.ini --mod-directory=$HOME/.factorio-seablock/mods
-    #'')
-    #(pkgs.writeShellScriptBin "factorio-1" ''
-    #  ${((import inputs.nixpkgs-factorio1 {
-    #    system = "x86_64-linux";
-    #    config.allowUnfree = true;
-    #  }).factorio.override {
-    #    username = "";
-    #    token = "";
-    #  })}/bin/factorio --verbose --config=$HOME/.factorio-1/config/config.ini --mod-directory=$HOME/.factorio-1/mods
-    #'')
-    #pkgs.factorio-headless
+    (pkgs.writeShellScriptBin "factorio-seablock" ''
+      ${
+        (
+          (import inputs.nixpkgs-factorio1 {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          }).factorio.override
+          {
+            username = "ErnWong";
+            token = "c04cd8ff710599afab26f51b9c9da6";
+          }
+        )
+      }/bin/factorio --verbose --config=$HOME/.factorio-seablock/config/config.ini --mod-directory=$HOME/.factorio-seablock/mods
+    '')
+    (pkgs.writeShellScriptBin "factorio-1" ''
+      ${
+        (
+          (import inputs.nixpkgs-factorio1 {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          }).factorio.override
+          {
+            username = "ErnWong";
+            token = "c04cd8ff710599afab26f51b9c9da6";
+          }
+        )
+      }/bin/factorio --verbose --config=$HOME/.factorio-1/config/config.ini --mod-directory=$HOME/.factorio-1/mods
+    '')
+    pkgs.factorio-headless
     #inputs.self.packages.x86_64-linux.openrct2-develop
 
     # Utils
-    pkgs.bitwarden-desktop
+    #pkgs.bitwarden-desktop
+    # TODO https://github.com/NixOS/nixpkgs/issues/526914
+    # https://github.com/bitwarden/clients/pull/20448
+    ((import inputs.nixpkgs-stable {
+      system = "x86_64-linux";
+      config.permittedInsecurePackages = [
+        "electron-39.8.10"
+      ];
+    }).bitwarden-desktop)
     pkgs.rclone
     pkgs.numbat # Alternative to Google search's unit-aware calculator
     pkgs.qbittorrent
