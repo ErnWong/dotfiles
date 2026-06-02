@@ -193,6 +193,7 @@ username:
     }).sonarr
     )
     pkgs.mission-center
+    pkgs.winbox4
 
     # Gnome extensions
     pkgs.gnomeExtensions.pano
