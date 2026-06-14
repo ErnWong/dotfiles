@@ -193,6 +193,11 @@
   services.printing = {
     enable = true;
     logLevel = "debug";
+    drivers = [
+      pkgs.cups-filters
+      pkgs.cups-browsed
+      pkgs.cnijfilter2
+    ];
   };
   services.avahi = {
     enable = true;
@@ -208,6 +213,19 @@
   services.openssh = {
     enable = true;
     openFirewall = lib.mkDefault false;
+  };
+
+  hardware.printers = {
+    ensureDefaultPrinter = "ThePrinter";
+    ensurePrinters = [
+      {
+        name = "ThePrinter";
+        deviceUri = "ipp://192.168.1.48:631/ipp/print"; # Find via ippfind
+        location = "Study";
+        model = "canonmb2300.ppd";
+      }
+
+    ];
   };
 
   #services.desktopManager.cosmic.enable = true;
