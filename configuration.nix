@@ -228,6 +228,10 @@
     ];
   };
 
+  hardware.sane = {
+    enable = true;
+  };
+
   #services.desktopManager.cosmic.enable = true;
   #services.displayManager.cosmic-greeter.enable = true;
   services.xserver.enable = true;
@@ -274,6 +278,8 @@
       extraGroups = [
         "wheel"
         "wireshark"
+        "scanner"
+        "lp"
       ];
       shell = pkgs.nushell;
     };
