@@ -228,9 +228,24 @@
     ];
   };
 
-  hardware.sane = {
-    enable = true;
-  };
+  # No luck getting scanner to work. Using scan-to-USB-drive directly instead
+  #hardware.sane = {
+  #  enable = true;
+  #  openFirewall = true;
+  #  #netConf = "192.168.1.48";
+  #  #  pixma = ''
+  #  #    bjnp://192.168.1.48
+  #  #  '';
+  #  extraBackends = [ pkgs.sane-airscan ];
+  #};
+  ## Force escl over WSD
+  #environment.etc."sane.d/airscan.conf".text = ''
+  #  [devices]
+  #  "Canon Maxify WSD" = http://192.168.1.48, wsd
+  #'';
+  #environment.etc."sane.d/pixma.conf".text = ''
+  #  bjnp://192.168.1.48:8612
+  #'';
 
   #services.desktopManager.cosmic.enable = true;
   #services.displayManager.cosmic-greeter.enable = true;
