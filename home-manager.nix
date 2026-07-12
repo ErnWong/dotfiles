@@ -158,34 +158,35 @@ username:
 
     # Games
     pkgs.runelite
-    (pkgs.writeShellScriptBin "factorio-seablock" ''
-      ${
-        (
-          (import inputs.nixpkgs-factorio1 {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-          }).factorio.override
-          {
-            username = "ErnWong";
-            token = "c04cd8ff710599afab26f51b9c9da6";
-          }
-        )
-      }/bin/factorio --verbose --config=$HOME/.factorio-seablock/config/config.ini --mod-directory=$HOME/.factorio-seablock/mods
-    '')
-    (pkgs.writeShellScriptBin "factorio-1" ''
-      ${
-        (
-          (import inputs.nixpkgs-factorio1 {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-          }).factorio.override
-          {
-            username = "ErnWong";
-            token = "c04cd8ff710599afab26f51b9c9da6";
-          }
-        )
-      }/bin/factorio --verbose --config=$HOME/.factorio-1/config/config.ini --mod-directory=$HOME/.factorio-1/mods
-    '')
+    # TODO move over to clan and use their secrets system, or at least use sops + private submodules
+    #(pkgs.writeShellScriptBin "factorio-seablock" ''
+    #  ${
+    #    (
+    #      (import inputs.nixpkgs-factorio1 {
+    #        system = "x86_64-linux";
+    #        config.allowUnfree = true;
+    #      }).factorio.override
+    #      {
+    #        username = "ErnWong";
+    #        token = "dontcommittokensyoubaka";
+    #      }
+    #    )
+    #  }/bin/factorio --verbose --config=$HOME/.factorio-seablock/config/config.ini --mod-directory=$HOME/.factorio-seablock/mods
+    #'')
+    #(pkgs.writeShellScriptBin "factorio-1" ''
+    #  ${
+    #    (
+    #      (import inputs.nixpkgs-factorio1 {
+    #        system = "x86_64-linux";
+    #        config.allowUnfree = true;
+    #      }).factorio.override
+    #      {
+    #        username = "ErnWong";
+    #        token = "dontcommittokensyoubaka";
+    #      }
+    #    )
+    #  }/bin/factorio --verbose --config=$HOME/.factorio-1/config/config.ini --mod-directory=$HOME/.factorio-1/mods
+    #'')
     pkgs.factorio-headless
     #inputs.self.packages.x86_64-linux.openrct2-develop
 
