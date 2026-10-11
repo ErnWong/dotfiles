@@ -34,7 +34,7 @@ username:
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-        "pano@elhan.io"
+        #"pano@elhan.io"
         "Vitals@CoreCoding.com"
         "caffeine@patapon.info"
         "color-picker@tuberry"
