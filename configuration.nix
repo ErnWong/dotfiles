@@ -295,6 +295,7 @@
         "wireshark"
         "scanner"
         "lp"
+        "plugdev"
       ];
       shell = pkgs.nushell;
     };
