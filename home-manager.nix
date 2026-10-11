@@ -264,7 +264,7 @@ username:
     pkgs.winbox4
 
     # Gnome extensions
-    pkgs.gnomeExtensions.pano
+    #pkgs.gnomeExtensions.pano
     pkgs.gnomeExtensions.vitals
     pkgs.gnomeExtensions.caffeine
     pkgs.gnomeExtensions.color-picker
