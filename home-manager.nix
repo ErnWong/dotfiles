@@ -77,6 +77,47 @@ username:
     pkgs.tap-plugins
     pkgs.x42-plugins
     pkgs.zam-plugins
+    pkgs.ladspaPlugins
+    pkgs.caps
+    pkgs.yoshimi
+    #pkgs.lmms
+    #(pkgs.lmms-full.overrideAttrs (oldAttrs: {
+    #  nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
+    #  postFixup = (oldAttrs.postFixup or "") + ''
+    #    wrapProgram $out/bin/lmms \
+    #      --prefix PATH : "${pkgs.zynaddsubfx}/bin" \
+    #      --prefix LD_LIBRARY_PATH : "${pkgs.zynaddsubfx}/lib"
+    #  '';
+    #}))
+    #(pkgs.lmms-full.overrideAttrs (oldAttrs: {
+    #  nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
+    #  postFixup = (oldAttrs.postFixup or "") + ''
+    #    wrapProgram $out/bin/lmms \
+    #      --prefix LD_LIBRARY_PATH : "$HOME/.nix-profile/lib:/run/current-system/sw/lib"
+    #  '';
+    #}))
+    #(pkgs.lmms-full.overrideAttrs (oldAttrs: {
+    #  # Fix the missing Zyn build flag omitted by the package maintainers
+    #  cmakeFlags = (oldAttrs.cmakeFlags or []) ++ [
+    #    "-DWANT_ZYN=ON"
+    #  ];
+    #}))
+    # Note: Manually set ldasp path in GUI settings to ~/.nix-profile/lib/ladspa/
+    (pkgs.lmms-full.overrideAttrs (oldAttrs: {
+      # Ensure fltk 1.3 is explicitly placed into the build context - to fix missing zynaddsubfx
+      #nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ 
+      #  pkgs.fltk13 
+      #];
+      nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ oldAttrs.buildInputs; # Fix fltk not found, fix zenaddsubfx, sid etc
+
+      #cmakeFlags = (oldAttrs.cmakeFlags or []) ++ [
+      #  #"-DWANT_ZYN=ON"
+      #  # Manually declare where FLTK lives so CMake doesn't have to look for it
+      #  #"-DFLTK_DIR=${pkgs.fltk13}"
+      #  #"-DFLTK_INCLUDE_DIR=${pkgs.fltk13}/include"
+      #];
+    }))
+    #pkgs.zynaddsubfx
 
     # Sound fonts
     pkgs.soundfont-arachno
