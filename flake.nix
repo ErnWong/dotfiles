@@ -2,30 +2,30 @@
   description = "Ernest's nix configuration";
 
   inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/master";
+    nixpkgs-stable-ernest.url = "github:nixos/nixpkgs/nixos-unstable"; # TODO I'm seeing two nixpkgs-stable? in the lock file? nixpkgs-stable is pinned to 24.11 while nixpkgs-stable2 is pinned to master? What is doing the 24.11? Ah, it's coming from cosmic. TODO - I was using the wrong branch the whole time. master is more bleeding edge than unstable, and release-26.05 is too old it seems. lets use unstable.
     #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-stable-ernest";
     };
 
     musnix = {
       url = "github:musnix/musnix";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-stable-ernest";
     };
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
+    #nixos-cosmic = {
+    #  url = "github:lilyinstarlight/nixos-cosmic";
+    #  inputs.nixpkgs.follows = "nixpkgs-stable-ernest";
+    #};
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-stable-ernest";
     };
 
     icantbelievegit = {
       url = "github:ErnWong/i-cant-believe-gits-not-a-file";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs-stable-ernest";
     };
 
     nixvim = {
@@ -54,7 +54,7 @@
   outputs =
     inputs:
     let
-      pkgs = import inputs.nixpkgs-stable {
+      pkgs = import inputs.nixpkgs-stable-ernest {
         overlays = [
           inputs.nuenv.overlays.default
         ];
@@ -89,28 +89,47 @@
       packages.x86_64-linux = import ./pkgs pkgs;
 
       nixosConfigurations = {
-        yoroizuka = inputs.nixpkgs-stable.lib.nixosSystem {
+        #installerIsoWithUsbModeSwitch = inputs.nixpkgs-stable-ernest.lib.nixosSystem {
+        #  modules = [
+        #    ({ pkgs, modulesPath, ... }: {
+        #      imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-graphical-calamares-gnome.nix") ];
+        #      hardware.usb-modeswitch.enable = true; # Some USB WiFi adapters present themselves as installation cdroms at first, so enable auto modeswitch to fix WiFi.
+        #      nixpkgs.hostPlatform = "x86_64-linux";
+        #      
+        #    })
+        #  ];
+        #};
+        yoroizuka = inputs.nixpkgs-stable-ernest.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
           };
           modules = [
             #inputs.musnix.nixosModules.default
-            inputs.nixos-cosmic.nixosModules.default
+            #inputs.nixos-cosmic.nixosModules.default
             ./configuration.nix
             ./hosts/yoroizuka.nix
           ];
         };
-        kaiki = inputs.nixpkgs-stable.lib.nixosSystem {
+        kaiki = inputs.nixpkgs-stable-ernest.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
           };
           modules = [
             #inputs.musnix.nixosModules.default
-            inputs.nixos-cosmic.nixosModules.default
+            #inputs.nixos-cosmic.nixosModules.default
             ./configuration.nix
             ./hosts/kaiki.nix
           ];
         };
+        #wenli = inputs.nixpkgs-stable-ernest.lib.nixosSystem {
+        #  specialArgs = {
+        #    inherit inputs;
+        #  };
+        #  modules = [
+        #    inputs.authentik-nix.nixosModules.default
+        #    ./hosts/wenli.nix
+        #  ];
+        #};
       };
     };
 }

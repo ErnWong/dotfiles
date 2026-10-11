@@ -243,7 +243,7 @@ username:
     #pkgs.bitwarden-desktop
     # TODO https://github.com/NixOS/nixpkgs/issues/526914
     # https://github.com/bitwarden/clients/pull/20448
-    ((import inputs.nixpkgs-stable {
+    ((import inputs.nixpkgs-stable-ernest {
       system = "x86_64-linux";
       config.permittedInsecurePackages = [
         "electron-39.8.10"
@@ -252,7 +252,7 @@ username:
     pkgs.rclone
     pkgs.numbat # Alternative to Google search's unit-aware calculator
     pkgs.qbittorrent
-    ((import inputs.nixpkgs-stable {
+    ((import inputs.nixpkgs-stable-ernest {
       system = "x86_64-linux";
       config.permittedInsecurePackages = [
         "dotnet-sdk-6.0.428"
