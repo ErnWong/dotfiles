@@ -164,6 +164,8 @@ username:
     # Comms
     pkgs.discord
     pkgs.firefox
+    pkgs.sdrpp
+    pkgs.satdump
 
     # Organisation
     #pkgs.logseq
