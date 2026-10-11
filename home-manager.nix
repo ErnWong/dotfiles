@@ -129,6 +129,9 @@ username:
     pkgs.krita
     pkgs.inkscape
     pkgs.darktable
+    pkgs.graphite
+    pkgs.rawtherapee
+    pkgs.art
 
     # Documents
     pkgs.libreoffice
