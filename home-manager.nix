@@ -54,6 +54,8 @@ username:
     MANPAGER = "less --RAW-CONTROL-CHARS --use-color --color d+r --color u+b";
     STARSHIP_CONFIG = pkgs.writeText "starship.toml" (lib.fileContents ./starship.toml);
     DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+
+    LADSPA_PATH = "$HOME/.nix-profile/lib/ladspa:/run/current-system/sw/lib/ladspa";
   };
 
   home.packages = inputs.self.packages.x86_64-linux.soundfonts-freepats ++ [
