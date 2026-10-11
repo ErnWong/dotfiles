@@ -206,6 +206,7 @@ username:
 
     # Games
     pkgs.runelite
+    pkgs.osu-lazer
     # TODO move over to clan and use their secrets system, or at least use sops + private submodules
     #(pkgs.writeShellScriptBin "factorio-seablock" ''
     #  ${
